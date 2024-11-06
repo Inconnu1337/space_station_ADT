@@ -195,6 +195,9 @@
     earliestStart: 30
     reoccurrenceDelay: 20
     minimumPlayers: 30
+  - type: RuleGrids
+  - type: LoadMapRule
+    preloadedGrid: ShuttleStriker
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
   - type: AntagObjectives
