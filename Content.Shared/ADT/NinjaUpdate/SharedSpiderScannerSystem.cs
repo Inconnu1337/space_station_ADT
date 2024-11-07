@@ -16,6 +16,8 @@ using Robust.Shared.Serialization;
 using Content.Shared.Humanoid;
 using Content.Shared.Damage;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
+using System.Threading.Tasks;
 
 namespace Content.Shared.NinjaUpdate;
 
@@ -99,6 +101,7 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
         _standingStateSystem.Stand(target, force: true);
 
         UpdateAppearance(uid, spiderScannerComponent);
+        StartScanningProcess(uid, spiderScannerComponent);
         return true;
     }
 
@@ -168,6 +171,31 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
         var ejected = EjectBody(uid, spiderScannerComponent);
         if (ejected != null)
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ejected.Value)} pried out of {ToPrettyString(uid)} by {ToPrettyString(args.User)}");
+    }
+
+    private void StartScanningProcess(EntityUid spiderScanner, SpiderScannerComponent component)
+    {
+        if (component.IsScanning)
+            return;
+
+        component.IsScanning = true;
+        _popupSystem.PopupEntity("Начато сканирование... Пожалуйста, подождите.", spiderScanner, spiderScanner);
+        Log.Debug("Сканирование начато");
+
+        Timer.Spawn(TimeSpan.FromMinutes(1), () =>
+        {
+            _popupSystem.PopupEntity("До завершения сканирования осталась 1 минута!", spiderScanner, spiderScanner);
+
+            Timer.Spawn(TimeSpan.FromMinutes(1), () =>
+            {
+                component.IsScanning = false;
+                _popupSystem.PopupEntity("Сканирование завершено.", spiderScanner, spiderScanner);
+                if (!component.IsScanning && component.BodyContainer.ContainedEntity is { Valid: true } containedEntity)
+                {
+                    TryEjectBody(spiderScanner, containedEntity, component);
+                }
+            });
+        });
     }
 
     [Serializable, NetSerializable]

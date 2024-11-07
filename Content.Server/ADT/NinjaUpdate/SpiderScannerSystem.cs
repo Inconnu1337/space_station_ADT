@@ -101,7 +101,6 @@ public sealed partial class SpiderScannerSystem : SharedSpiderScannerSystem
         {
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(args.User)} inserted {ToPrettyString(args.Args.Target.Value)} into {ToPrettyString(entity.Owner)}");
-            StartScanningProcess(entity, entity.Comp);
         }
         args.Handled = true;
     }
@@ -173,29 +172,5 @@ public sealed partial class SpiderScannerSystem : SharedSpiderScannerSystem
 
         // if body is ejected - no need to display health-analyzer
         _uiSystem.CloseUi(spiderScanner.Owner, HealthAnalyzerUiKey.Key);
-    }
-
-    private void StartScanningProcess(Entity<SpiderScannerComponent> spiderScanner, SpiderScannerComponent component)
-    {
-        if (component.IsScanning != true)
-            return;
-
-        component.IsScanning = true;
-        _popupSystem.PopupEntity("Начато сканирование... Пожалуйста, подождите.", spiderScanner.Owner, spiderScanner.Owner);
-        Log.Debug("Сюда дошjkkло");
-        Timer.Spawn(TimeSpan.FromMinutes(1), () =>
-        {
-            _popupSystem.PopupEntity("До завершения сканирования осталась 1 минута!", spiderScanner.Owner, spiderScanner.Owner);
-
-            Timer.Spawn(TimeSpan.FromMinutes(1), () =>
-            {
-                component.IsScanning = false;
-                _popupSystem.PopupEntity("Сканирование завершено.", spiderScanner.Owner, spiderScanner.Owner);
-                if (component.IsScanning == false)
-                {
-                    TryEjectBody(spiderScanner, spiderScanner.Owner, component);
-                }
-            });
-        });
     }
 }
