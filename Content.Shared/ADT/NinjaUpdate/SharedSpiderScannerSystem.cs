@@ -4,7 +4,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -21,14 +20,13 @@ using System.Threading.Tasks;
 
 namespace Content.Shared.NinjaUpdate;
 
-public abstract partial class SharedSpiderScannerSystem: EntitySystem
+public abstract partial class SharedSpiderScannerSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
     public override void Initialize()
@@ -67,7 +65,7 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
 
     public bool InsertBody(EntityUid uid, EntityUid target, SpiderScannerComponent spiderScannerComponent)
     {
-        Log.Debug("Дошло сюда");
+        Log.Debug($"target it: {target}. uid it: {uid}, containedentity it: {spiderScannerComponent.BodyContainer.ContainedEntity}");
         if (spiderScannerComponent.BodyContainer.ContainedEntity != null)
             return false;
 
@@ -77,19 +75,21 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
         if (!HasComp<HumanoidAppearanceComponent>(target))
             return false;
 
+        if (target != uid)
+            return false;
+
         if (TryComp<DamageableComponent>(target, out var damageable))
         {
-            Log.Debug("Дошло и сюда");
             if (damageable.Damage.DamageDict.TryGetValue("Cellular", out var damage) && damage >= 70)
             {
                 //EnsureComp
-                _popupSystem.PopupEntity("Обнаружена поврежденная цепочка ДНК. Сканирование невозможно.", target, uid);
+                _popupSystem.PopupEntity("Обнаружена поврежденная цепочка ДНК. Сканирование невозможно.", uid, target);
                 return false;
             }
 
             if (damageable.TotalDamage > 0)
             {
-                _popupSystem.PopupEntity("Существо не может быть отсканировано, оно повреждено.", target, uid);
+                _popupSystem.PopupEntity("Существо не может быть отсканировано, оно повреждено.", uid, target);
                 return false;
             }
         }
@@ -101,7 +101,7 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
         _standingStateSystem.Stand(target, force: true);
 
         UpdateAppearance(uid, spiderScannerComponent);
-        StartScanningProcess(uid, spiderScannerComponent);
+        StartScanningProcess(uid, target, spiderScannerComponent);
         return true;
     }
 
@@ -126,7 +126,7 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
         if (!Resolve(uid, ref spiderScannerComponent))
             return null;
 
-        if (spiderScannerComponent.BodyContainer.ContainedEntity is not {Valid: true} contained)
+        if (spiderScannerComponent.BodyContainer.ContainedEntity is not { Valid: true } contained)
             return null;
 
         _containerSystem.Remove(contained, spiderScannerComponent.BodyContainer);
@@ -173,14 +173,14 @@ public abstract partial class SharedSpiderScannerSystem: EntitySystem
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ejected.Value)} pried out of {ToPrettyString(uid)} by {ToPrettyString(args.User)}");
     }
 
-    private void StartScanningProcess(EntityUid spiderScanner, SpiderScannerComponent component)
+    private void StartScanningProcess(EntityUid spiderScanner, EntityUid target, SpiderScannerComponent component)
     {
         if (component.IsScanning)
             return;
 
         component.IsScanning = true;
         _popupSystem.PopupEntity("Начато сканирование... Пожалуйста, подождите.", spiderScanner, spiderScanner);
-        Log.Debug("Сканирование начато");
+        Log.Debug($"Сканирование начато spiderScanner it: {spiderScanner}. target it {target}");
 
         Timer.Spawn(TimeSpan.FromMinutes(1), () =>
         {
