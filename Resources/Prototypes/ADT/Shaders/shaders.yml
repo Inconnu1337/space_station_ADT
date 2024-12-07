@@ -8,3 +8,8 @@
   id: SeeingStatic
   kind: source
   path: "/Textures/ADT/Shaders/seeing_static.swsl"
+
+- type: shader
+  id: NightVision
+  kind: source
+  path: "/Textures/ADT/Shaders/night_vision.swsl"

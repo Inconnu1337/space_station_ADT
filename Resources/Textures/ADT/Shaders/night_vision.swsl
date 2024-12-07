@@ -1,0 +1,41 @@
+light_mode unshaded;
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp vec2 VIEWPORT_SIZE; // Добавлено highp для точности
+const highp vec3 tint = vec3(0.3, 1.0, 0.3);
+const highp float luminance_threshold = 2.0;
+const highp float noise_amount = 0.5;
+
+lowp float rand(lowp vec2 n) {
+    return fract(sin(dot(n.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+void fragment() {
+    highp vec4 color = zTextureSpec(SCREEN_TEXTURE, FRAGCOORD.xy * SCREEN_PIXEL_SIZE);
+
+    // Преобразуем цвет в оттенки серого с использованием яркости
+    highp float grey = dot(color.rgb, vec3(0.298, 0.5882, 0.1137));
+    grey = smoothstep(0.0, 1.0, grey * luminance_threshold); // Сглаживаем значения
+
+    // Модификация цвета для ночного зрения
+    color.rgb = mix(color.rgb, tint, grey);
+
+    // Динамическая настройка яркости для усиления света
+    highp float brightness = smoothstep(0.0, 1.0, grey * luminance_threshold);
+    color.rgb *= brightness;
+
+    // Добавляем мерцание для реалистичности
+    color.rgb *= 0.95 + 0.05 * sin(TIME * 10.0);
+
+    // Генерация шума
+    lowp float noise_value = rand(FRAGCOORD.xy + TIME) * noise_amount / 10.0;
+    color.rgb += noise_value;
+
+    // Применяем эффект виньетки
+    highp vec2 uv = (FRAGCOORD.xy / VIEWPORT_SIZE) * 2.0 - 1.0;
+    highp float vignette = 1.0 - smoothstep(0.5, 1.0, length(uv) * 0.75);
+    color.rgb *= vignette;
+
+    // Ограничиваем результат
+    COLOR = clamp(color, 0.0, 1.0);
+}
