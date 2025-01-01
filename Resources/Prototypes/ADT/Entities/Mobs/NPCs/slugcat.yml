@@ -21,7 +21,7 @@
         mask:
         - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -89,13 +89,14 @@
     damage:
       types:
         Slash: 0
-  - type: Muted
+  - type: ReplacementAccent
+    accent: cat
   - type: NoSlip
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
   - type: Clumsy
-    clumsyDamage:
+    gunShootFailDamage:
       types:
         Blunt: 20
         Piercing: 15
