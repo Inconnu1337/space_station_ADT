@@ -41,6 +41,10 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
+            "/Maps/ADTMaps/Shuttles/pirate.yml", //ADT edit
+            // ADT-New-Year-Start
+            "/Maps/ADTMaps/ADTStations/NewYear/adt_centcom.yml"
+            // ADT-New-Year-End
         };
 
         private static readonly string[] GameMaps =
@@ -62,6 +66,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxPearl",
             "CorvaxTushkan",
             "CorvaxGlacier",
+            "CorvaxAwesome",
             // Corvax-End
             "Dev",
             "TestTeg",
@@ -81,9 +86,6 @@ namespace Content.IntegrationTests.Tests
             "Oasis",
             "Cog",
             // ADT-Start
-            "ADT_FrontierHalloween",
-            "ADT_TrainHalloween",
-            "ADT_SalternHalloween",
             "ADT_Astra",
             "ADT_Avrit",
             "ADT_Bagel",
@@ -103,8 +105,25 @@ namespace Content.IntegrationTests.Tests
             "ADT_Aspid",
             "ADT_Moose",
             "ADT_Alley",
-            "ADT_kilo"
+            "ADT_kilo",
+            "ADT_Pie",
+            "ADT_Cluster_Legacy",
             // ADT-End
+
+            // ADT-Halloween-Start
+            "ADT_TrainHalloween",
+            "ADT_SalternHalloween",
+            // ADT-Halloween-End
+
+            // ADT-New-Year-Start
+            "ADT_BagelNewYear",
+            "ADT_BoxNewYear",
+            "ADT_Cluster_LegacyNewYear",
+            "ADT_DeltaNewYear",
+            "ADT_GeminiNewYear",
+            "ADT_PieNewYear",
+            "ADT_SalternNewYear"
+            // ADT-New-Year-End
         };
 
         /// <summary>

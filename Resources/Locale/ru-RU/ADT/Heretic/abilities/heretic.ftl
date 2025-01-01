@@ -4,11 +4,12 @@ heretic-ability-fail = Не удалось использовать заклин
 heretic-ability-fail-magicitem = Вы не можете произнести заклинание без концентрации!
 heretic-ability-fail-notarget = Не удалось найти цель для заклинания!
 
-heretic-magicitem-examine = [color=yellow]Данный предмет позволяет вам использовать продвинутые заклинания, пока экипирован.[/color]
+heretic-magicitem-examine = [color=yellow]Данный предмет позволяет вам использовать продвинутые заклинания, пока экипирован или находится в руках.[/color]
 
 heretic-blade-examine = [color=yellow]После использования в руке, вы сломаете данный клинок и телепортируетесь подальше от опасности.[/color]
 heretic-blade-use = Лезвие разлетается на куски, и вы чувствуете, как голоса уводят вас прочь.
-
+heretic-riposte-used = Парирование использовано!
+heretic-riposte-available = Парирование доступно!
 
 heretic-rust-mark-itembreak = {$name} разлетается на куски!
 
