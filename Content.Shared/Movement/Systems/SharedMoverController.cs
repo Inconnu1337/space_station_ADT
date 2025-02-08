@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared.ADT.btr;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CCVar;
+using Content.Shared.DoAfter;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
@@ -32,6 +34,7 @@ namespace Content.Shared.Movement.Systems;
 /// </summary>
 public abstract partial class SharedMoverController : VirtualController
 {
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private   readonly IConfigurationManager _configManager = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private   readonly IMapManager _mapManager = default!;

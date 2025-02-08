@@ -1,0 +1,112 @@
+- type: entity
+  parent: RMCCommunicationsConsoleBase
+  id: RMCOverwatchConsole
+  name: overwatch console
+  description: State of the art machinery for giving orders to a squad.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: ADT/ADTGlobalEvents/ShipBattle/Objects/Vehicles/hoverbike.rsi
+    state: overwatch
+    overrideDir: West
+    enableOverrideDir: true
+  - type: InteractionOutline
+  - type: ActivatableUI
+    key: enum.APCControlWindowUI.Key
+  - type: UserInterface
+    interfaces:
+      enum.APCControlWindowUI.Key:
+        type: APCControlBui
+  - type: APCController
+
+- type: entity
+  abstract: true
+  parent: CMBaseStructure
+  id: RMCCommunicationsConsoleBase
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: ADT/ADTGlobalEvents/ShipBattle/Objects/Vehicles/hoverbike.rsi
+    state: overwatch
+    layers: [ ]
+  - type: Clickable
+  - type: InteractionOutline
+  - type: WallMount
+    arc: 360
+
+- type: entity
+  parent: BaseStructure
+  id: CMBaseStructure
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+
+- type: entity
+  id: ADTAPCVehicle
+  components:
+  - type: MobMover
+  - type: DoAfter
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+    acceleration: 3
+  - type: Physics
+    bodyType: KinematicController
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Critical
+  - type: MobState
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Fun/pai.rsi
+    layers:
+    - map: [ "enum.APCVisualLayers.Base" ]
+      state: pai-off-overlay
+  - type: APCEntity
+    baseState: pai-off-overlay
+    destroyedState: syndicate-pai-off-overlay
+  - type: ContainerContainer
+    containers:
+      actions: !type:Container
+  - type: Actions
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic

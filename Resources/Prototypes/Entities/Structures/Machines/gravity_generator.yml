@@ -139,3 +139,6 @@
     lightRadiusMax: 2.5
   - type: StaticPrice
     price: 2000
+  - type: Tag
+    tags:
+    - APCEnterPoint
