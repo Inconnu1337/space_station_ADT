@@ -67,3 +67,16 @@ public enum APCVisualLayers : byte
 {
     Base
 }
+
+[Serializable, NetSerializable]
+public sealed class RequestControlAPCEvent : EntityEventArgs
+{
+    public NetEntity APCController;
+    public NetEntity User;
+
+    public RequestControlAPCEvent(NetEntity apccontroller, NetEntity user)
+    {
+        APCController = apccontroller;
+        User = user;
+    }
+}

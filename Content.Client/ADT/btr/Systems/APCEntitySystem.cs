@@ -6,7 +6,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 namespace Content.Client.ADT.btr;
 
 /// <inheritdoc/>
-public sealed partial class APCEntitySystem : SharedAPCEntitySystem
+public sealed partial class APCEntitySystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 

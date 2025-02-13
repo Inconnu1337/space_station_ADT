@@ -10,7 +10,7 @@ public sealed class APCControlBui : BoundUserInterface
 
     public APCControlBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        _window = new APCControlWindow();
+        _window = new APCControlWindow(owner);
     }
 
     protected override void Open()

@@ -9,7 +9,7 @@ using Content.Shared.Movement.Components;
 
 namespace Content.Shared.ADT.btr.Systems;
 
-public abstract partial class SharedAPCEntitySystem : EntitySystem
+public sealed partial class SharedAPCEntitySystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
@@ -19,11 +19,13 @@ public abstract partial class SharedAPCEntitySystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<APCEntityComponent, MapInitEvent>(OnStartup);
-        SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnShutdown);
+        base.Initialize();
+
         SubscribeLocalEvent<APCEntityComponent, APCControlReturnActionEvent>(OnReturn);
         SubscribeLocalEvent<APCEntityComponent, GettingAPCControlledEvent>(OnGettingControlled);
         SubscribeLocalEvent<APCEntityComponent, DestructionEventArgs>(OnDestruction);
+
+        InitializeController();
     }
 
     public override void Update(float frameTime)
@@ -36,19 +38,6 @@ public abstract partial class SharedAPCEntitySystem : EntitySystem
             TryComp<SleepingComponent>((EntityUid)comp.User, out var _) ||
             TryComp<ForcedSleepingComponent>((EntityUid)comp.User, out var _))) Return(uid, comp);
         }
-    }
-
-    public void OnStartup(EntityUid uid, APCEntityComponent component, MapInitEvent args)
-    {
-        _actionsSystem.AddAction(uid, ref component.APCControlReturnActEntity, component.APCControlReturnAction);
-        UpdateAppearance(uid, component);
-    }
-
-    public void OnShutdown(EntityUid uid, APCEntityComponent component, ComponentShutdown args)
-    {
-        Return(uid, component);
-
-        _actionsSystem.RemoveAction(component.APCControlReturnActEntity);
     }
 
     public void SendLog()
@@ -103,7 +92,7 @@ public abstract partial class SharedAPCEntitySystem : EntitySystem
         DestroyAPC(uid, component);
     }
 
-    public virtual void DestroyAPC(EntityUid uid, APCEntityComponent? component = null)
+    public void DestroyAPC(EntityUid uid, APCEntityComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -123,7 +112,7 @@ public abstract partial class SharedAPCEntitySystem : EntitySystem
         RemCompDeferred<InputMoverComponent>(uid);
     }
 
-    private void UpdateAppearance(EntityUid uid, APCEntityComponent? component = null,
+    public void UpdateAppearance(EntityUid uid, APCEntityComponent? component = null,
         AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref component, ref appearance, false))

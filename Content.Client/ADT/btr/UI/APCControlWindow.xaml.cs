@@ -12,6 +12,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Robust.Client.Player;
 using Content.Shared.ADT.btr.Systems;
+using Content.Shared.ADT.btr;
 
 namespace Content.Client.ADT.btr.UI;
 
@@ -20,28 +21,30 @@ public sealed partial class APCControlWindow : DefaultWindow
 {
     [Dependency] private readonly EntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-
     private SharedPopupSystem _popup;
+    private readonly SharedAPCEntitySystem _sharedAPCEntitySystem;
 
-    public APCControlWindow()
+    public APCControlWindow(EntityUid owner)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _popup = _entManager.System<SharedPopupSystem>();
+        EntityUid? player = _playerManager.LocalSession?.AttachedEntity;
+        _sharedAPCEntitySystem = _entManager.System<SharedAPCEntitySystem>();
 
         PopupButton1.OnButtonDown += args =>
         {
-            if (_playerManager.LocalSession?.AttachedEntity != null)
-                _popup.PopupClient("попап1", _playerManager.LocalSession.AttachedEntity);
+            if (player != null)
+                _popup.PopupClient("попап1", player);
         };
 
         PopupButton2.OnButtonDown += args =>
         {
-            if (_playerManager.LocalSession?.AttachedEntity != null)
+            if (player != null)
             {
-                _popup.PopupClient("попап2", _playerManager.LocalSession.AttachedEntity);
-                var _sharedAPCEntitySystem = IoCManager.Resolve<SharedAPCEntitySystem>();
-                _sharedAPCEntitySystem.SendLog();
+                _popup.PopupClient("Вы контролируете сущность", player);
+
+                _sharedAPCEntitySystem.RequestControlAPC(owner, player.Value);
             }
         };
     }

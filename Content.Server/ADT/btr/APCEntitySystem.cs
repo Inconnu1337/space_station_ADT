@@ -20,6 +20,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Coordinates;
+using Content.Shared.Actions;
 
 namespace Content.Server.ADT.btr;
 
@@ -36,10 +37,8 @@ public sealed partial class APCEntitySystem : EntitySystem
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
-    private SharedAPCEntitySystem _sharedAPCEntitySystem = default!;
-
-
-    public ProtoId<TagPrototype> APCEnterPoint = "APCEnterPoint";
+    [Dependency] private readonly SharedAPCEntitySystem _sharedAPCEntitySystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {
@@ -50,14 +49,11 @@ public sealed partial class APCEntitySystem : EntitySystem
         SubscribeLocalEvent<APCEntityComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<APCEntityComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<APCEntityComponent, CanDropTargetEvent>(OnCanDragDrop);
-
-        _sharedAPCEntitySystem = IoCManager.Resolve<SharedAPCEntitySystem>();
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
         var apcQuery = EntityQueryEnumerator<APCEntityComponent>();
         while (apcQuery.MoveNext(out var uid, out var comp))
         {
@@ -75,6 +71,9 @@ public sealed partial class APCEntitySystem : EntitySystem
             Logger.Warning($"No map found: {_gridPath}");
             return;
         }
+
+        _actionsSystem.AddAction(uid, ref component.APCControlReturnActEntity, component.APCControlReturnAction);
+        _sharedAPCEntitySystem.UpdateAppearance(uid, component);
 
         if (component.GridEnt != null || component.MapEnt != null)
         {
@@ -109,6 +108,8 @@ public sealed partial class APCEntitySystem : EntitySystem
     {
         _sharedAPCEntitySystem.Return(uid, component);
         _sharedAPCEntitySystem.TryEjectEntities(uid, component);
+        _actionsSystem.RemoveAction(component.APCControlReturnActEntity);
+
         if (component.GridEnt != null)
             QueueDel(component.GridEnt);
         if (component.MapEnt != null)
@@ -187,11 +188,28 @@ public sealed partial class APCEntitySystem : EntitySystem
         {
             if (transform.GridUid != gridId || !_tags.HasTag(uid, APCEnterPoint))
                 continue;
+
             return transform.WorldPosition;
         }
 
         return null;
     }
+
+
+    public EntityUid? TryFindAPCFuelTank(EntityUid gridId)
+    {
+        var query = EntityQueryEnumerator<APCFuelTankComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var fuelTank, out var transform))
+        {
+            if (transform.GridUid != gridId)
+                continue;
+
+            return uid;
+        }
+
+        return null;
+    }
+
     public void HandlePulling(EntityUid user, EntityCoordinates coords, APCEntityComponent component, bool checkCapacity = false)
     {
         if (TryComp(user, out PullableComponent? otherPullable) &&
@@ -234,4 +252,5 @@ public sealed partial class APCEntitySystem : EntitySystem
             component.OnAPC++;
         }
     }
+
 }

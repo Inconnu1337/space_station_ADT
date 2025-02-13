@@ -2,6 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Tag;
 
 namespace Content.Shared.ADT.btr;
 
@@ -51,4 +52,12 @@ public sealed partial class APCEntityComponent : Component
 
     [DataField("APCControlReturnActionEntity")]
     public EntityUid? APCControlReturnActEntity;
+
+//
+
+    [DataField]
+    public ProtoId<TagPrototype> APCEnterPoint = "APCEnterPoint";
+
+    [DataField]
+    public ProtoId<TagPrototype> APCFuel = "ADTAppleLiqueur";
 }
