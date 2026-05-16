@@ -43,3 +43,7 @@ ent-ADTBalloonDog = шарик в форме собачки
 
 ent-ADTBalloonSword = шарик в форме меча 
     .desc = Слишком безопасен для нападения на корабли.
+
+ent-ADTPlushieVox = плюшевый вокс
+    .desc = СКРИИИИИИИИИИИИ!
+    .suffix = Поджигаемый

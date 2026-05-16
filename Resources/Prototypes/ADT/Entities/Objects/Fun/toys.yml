@@ -206,3 +206,61 @@
   - type: Tag
     tags:
     - Balloon
+
+- type: entity
+  parent: PlushieVox
+  id: ADTPlushieVox
+  suffix: "Flammable"
+  components:
+  - type: Appearance
+  - type: CollisionWake
+    enabled: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+          - ItemMask
+        layer:
+          - BulletImpassable
+        restitution: 0.3
+        friction: 0.2
+  - type: RequireProjectileTarget
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: Flammable
+    fireSpread: true
+    canResistFire: false
+    alwaysCombustible: false
+    canExtinguish: true
+    damage:
+      types:
+        Heat: 3.5
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: ADTPlushieVox
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: EmitSoundOnFire
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+    minInterval: 2
+    maxInterval: 5
