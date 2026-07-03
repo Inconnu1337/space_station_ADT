@@ -31,7 +31,7 @@ jobs:
     - name: Get Engine Tag
       run: |
         cd RobustToolbox
-        git fetch --tags --force --unshallow || git fetch --tags --force
+        git fetch --depth=1
 
     - name: Install dependencies
       run: dotnet restore
