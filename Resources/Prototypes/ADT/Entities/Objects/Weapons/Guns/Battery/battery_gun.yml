@@ -568,7 +568,7 @@
 
 - type: entity
   parent: BaseWeaponBatterySmall
-  id: ADTSecWeaponLaserPistol
+  id: ADTWeaponLaserSecPistol
   name: laser pistol
   description: Better pray it won't burn your hands off.
   components:

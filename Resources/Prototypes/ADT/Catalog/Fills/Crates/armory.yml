@@ -19,5 +19,5 @@
   components:
   - type: StorageFill
     contents:
-      - id: ADTSecWeaponLaserPistol
+      - id: ADTWeaponLaserSecPistol
         amount: 3

@@ -40,11 +40,11 @@
   - MagazinePistol
 
 - type: thiefBackpackSet
-  id: SecWeaponLaserPistol
+  id: WeaponLaserSecPistol
   name: sec-voucher-laser-name
   description: sec-voucher-laser-description
   sprite:
     sprite: ADT/Objects/Weapons/Guns/Battery/sec_laser_pistol.rsi
     state: icon
   content:
-  - ADTSecWeaponLaserPistol
+  - ADTWeaponLaserSecPistol

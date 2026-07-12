@@ -144,7 +144,7 @@
   - type: MiningVoucher
     kits:
     - WeaponSecMk58
-    - SecWeaponLaserPistol
+    - WeaponLaserSecPistol
     typeDropPlace: ThisPlace
     typeDrop: Rocket
 
