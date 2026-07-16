@@ -7,7 +7,7 @@
   flavor: medicine
   color: "#d4af37"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:

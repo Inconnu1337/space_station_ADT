@@ -60,8 +60,8 @@
           False:
             color: "#FFFFFF"
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 3
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -73,7 +73,7 @@
     attackRate: 0.5
     damage:
       types:
-        Blunt: 40
+        Blunt: 35
         Structural: 150
     range: 2
     angle: 0
@@ -93,14 +93,22 @@
       task: ADTBubblegumCompound
   - type: Megafauna
   - type: ArmorPenetration
-    penetration: 0.5
+    penetration: 0.4
   - type: Bubblegum
   - type: BubblegumTripleCharge
+    delays:
+    - 1.0
+    - 0.7
+    - 0.4
   - type: BubblegumHallucinationCharge
+    hallucinationsSmash: 3
   - type: BubblegumSurround
+    waves: 4
   - type: BubblegumBloodWarp
   - type: BubblegumSummonNarsi
+    count: 2
   - type: BubblegumBloodAttack
+    smackDamageEnraged: 17
   - type: BubblegumLoot
     randomAmountLoot:
       GoldOre: 10

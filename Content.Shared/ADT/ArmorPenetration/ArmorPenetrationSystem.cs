@@ -1,10 +1,8 @@
 using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Shared.ADT.ArmorPenetration;

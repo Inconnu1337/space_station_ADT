@@ -1,12 +1,8 @@
 using System.Linq;
 using Content.Shared.ADT.Crushers.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Damage.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Timing;
-using Robust.Shared.Log;
 
 namespace Content.Shared.ADT.Crushers.Systems;
 

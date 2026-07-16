@@ -3,23 +3,17 @@ using Content.Shared.ADT.Crushers.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Examine;
-using Content.Shared.Interaction;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Popups;
-using Content.Shared.Projectiles;
-using Content.Shared.Tag;
-using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Weapons.Ranged.Upgrades.Components;
-using Content.Shared.Whitelist;
-using Content.Shared.Tools.Systems;
-using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Content.Shared.Tag;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.ADT.Crushers.Systems;
@@ -30,9 +24,7 @@ public sealed class TrophyHolderSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
@@ -67,7 +59,7 @@ public sealed class TrophyHolderSystem : EntitySystem
         var examineMarkup = new FormattedMessage();
 
         foreach (var trophy in trophies)
-        {   
+        {
             foreach (var effect in trophy.Comp.Effects)
             {
                 var description = effect.GetDescription();
@@ -102,7 +94,7 @@ public sealed class TrophyHolderSystem : EntitySystem
 
             _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Items/crowbar.ogg"), ent, args.User);
             _popup.PopupClient(Loc.GetString("crusher-upgrade-popup-extracted", ("upgrade", lastTrophy), ("crusher", ent.Owner)), args.User);
-            
+
             _adminLog.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.User):player} extracted crusher upgrade {ToPrettyString(lastTrophy)} from {ToPrettyString(ent.Owner)}.");
 
             args.Handled = true;

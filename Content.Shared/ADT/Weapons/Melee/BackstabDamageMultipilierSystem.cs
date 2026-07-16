@@ -28,7 +28,7 @@ public sealed class BackstabDamageMultipilierSystem : EntitySystem
 
     private bool IsBehindTarget(EntityUid user, EntityUid target)
     {
-        var targetFacingDirection = Transform(target).LocalRotation.GetCardinalDir();
+        var targetFacingDirection = _transform.GetWorldRotation(target).GetCardinalDir();
         var behindAngle = targetFacingDirection.GetOpposite().ToAngle();
 
         var userMapPos = _transform.GetMapCoordinates(user);
@@ -43,4 +43,3 @@ public sealed class BackstabDamageMultipilierSystem : EntitySystem
         return false;
     }
 }
-// todo fix rotate

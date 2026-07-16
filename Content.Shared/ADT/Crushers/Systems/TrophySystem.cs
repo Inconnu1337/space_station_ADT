@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.ADT.Crushers.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Projectiles;
@@ -12,8 +11,6 @@ namespace Content.Shared.ADT.Crushers.Systems;
 
 public sealed class TrophySystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TrophyHolderSystem _trophyHolder = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
