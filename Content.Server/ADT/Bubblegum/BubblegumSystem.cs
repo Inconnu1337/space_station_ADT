@@ -1,13 +1,13 @@
-using Content.Server.NPC.HTN;
-using Content.Shared.Coordinates;
-using Content.Shared.Coordinates.Helpers;
 using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
+using Content.Server.NPC.HTN;
 using Content.Shared.Actions;
 using Content.Shared.ADT.Bubblegum;
+using Content.Shared.Chat;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Eye;
+using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -45,7 +45,7 @@ public sealed class BubblegumSystem : EntitySystem
         SubscribeLocalEvent<BubblegumComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BubblegumComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BubblegumComponent, MoveEvent>(OnMove);
-        SubscribeLocalEvent<BubblegumComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BubblegumComponent, DamageDealtEvent>(OnDamageDealt);
         SubscribeLocalEvent<BubblegumComponent, ProjectileHitAttemptEvent>(OnProjectileHitAttempt);
         SubscribeLocalEvent<BubblegumComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<BubblegumComponent, GetVisMaskEvent>(OnGetVisMask);
@@ -127,9 +127,9 @@ public sealed class BubblegumSystem : EntitySystem
                && !TerminatingOrDeleted(target);
     }
 
-    private void OnDamageChanged(Entity<BubblegumComponent> ent, ref DamageChangedEvent args)
+    private void OnDamageDealt(Entity<BubblegumComponent> ent, ref DamageDealtEvent args)
     {
-        if (!args.DamageIncreased)
+        if (args.Damage.GetTotal() <= FixedPoint2.Zero)
             return;
 
         if (TryComp<MobThresholdsComponent>(ent, out var thresholds))
@@ -141,7 +141,7 @@ public sealed class BubblegumSystem : EntitySystem
                     maxHealth = (float)damage;
             }
 
-            var damageTaken = (float)args.Damageable.TotalDamage;
+            var damageTaken = (float)_damageable.GetTotalDamage(ent.Owner);
             ent.Comp.AngerModifier = Math.Clamp(damageTaken / 60f, 0f, 20f);
 
             if (!ent.Comp.InSmashPhase && damageTaken >= maxHealth * 0.5f)
@@ -287,22 +287,22 @@ public sealed class BubblegumSystem : EntitySystem
 
         var name = FormattedMessage.EscapeText(meta.EntityName);
         var message = Loc.GetString($"{locId}-{_random.Next(1, count + 1)}");
-        
+
         var wrappedMessage = Loc.GetString("chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString("chat-speech-verb-default")),
             ("fontType", "Blackcraft"),
             ("fontSize", 16),
-            ("defaultFont", "NotoSans"), 
-            ("defaultSize", 12),         
+            ("defaultFont", "NotoSans"),
+            ("defaultSize", 12),
             ("message", message));
 
         _chat.SendInVoiceRange(
-            ChatChannel.Local, 
-            message, 
-            wrappedMessage, 
-            wrappedMessage, 
-            uid, 
+            ChatChannel.Local,
+            message,
+            wrappedMessage,
+            wrappedMessage,
+            uid,
             ChatTransmitRange.HideChat);
 
         var minionQuery = EntityQueryEnumerator<BubblegumMinionComponent, MetaDataComponent>();
@@ -322,11 +322,11 @@ public sealed class BubblegumSystem : EntitySystem
                 ("message", message));
 
             _chat.SendInVoiceRange(
-                ChatChannel.Local, 
-                message, 
-                minionWrapped, 
-                minionWrapped, 
-                minionUid, 
+                ChatChannel.Local,
+                message,
+                minionWrapped,
+                minionWrapped,
+                minionUid,
                 ChatTransmitRange.HideChat);
         }
     }

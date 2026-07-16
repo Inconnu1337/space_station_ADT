@@ -87,9 +87,9 @@ public sealed class BloodContractSystem : EntitySystem
             return;
 
         ent.Comp.Used = true;
-        
+
         ent.Comp.ValidTargets.Clear();
-        
+
         _ui.CloseUi(ent.Owner, BloodContractUiKey.Key);
 
         var pending = EnsureComp<BloodContractPendingComponent>(victim);

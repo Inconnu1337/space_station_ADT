@@ -33,7 +33,7 @@ public sealed class MayhemSystem : EntitySystem
         args.Handled = true;
 
         var coords = _transform.GetMapCoordinates(args.User);
-        var targets = new HashSet<Entity<HumanoidAppearanceComponent>>();
+        var targets = new HashSet<Entity<HumanoidProfileComponent>>();
         _lookup.GetEntitiesInRange(coords, ent.Comp.Range, targets);
 
         var applyAt = _timing.CurTime + ent.Comp.EffectDelay;

@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Destructible;
+using Content.Shared.ActionBlocker;
 using Content.Shared.ADT.Bubblegum;
 using Content.Shared.ADT.Bubblegum.Abilities;
 using Content.Shared.ADT.Trail;
@@ -10,6 +11,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
 using Content.Shared.Throwing;
 using Robust.Shared.Map;
@@ -23,6 +25,7 @@ namespace Content.Server.ADT.Bubblegum;
 
 public sealed class BubblegumChargeSystem : EntitySystem
 {
+    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly BubblegumCombatSystem _combat = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -38,13 +41,21 @@ public sealed class BubblegumChargeSystem : EntitySystem
 
         SubscribeLocalEvent<BubblegumActiveChargeComponent, ComponentStartup>(OnActiveStart);
         SubscribeLocalEvent<BubblegumActiveChargeComponent, ComponentShutdown>(OnActiveShutdown);
+        SubscribeLocalEvent<BubblegumActiveChargeComponent, UpdateCanMoveEvent>(OnCanMove);
         SubscribeLocalEvent<BubblegumActiveChargeComponent, ThrowDoHitEvent>(OnChargeHit);
         SubscribeLocalEvent<BubblegumActiveChargeComponent, LandEvent>(OnChargeLand);
         SubscribeLocalEvent<BubblegumActiveChargeComponent, PreventCollideEvent>(OnChargePreventCollide);
     }
 
+    private void OnCanMove(Entity<BubblegumActiveChargeComponent> ent, ref UpdateCanMoveEvent args)
+    {
+        args.Cancel();
+    }
+
     private void OnActiveStart(Entity<BubblegumActiveChargeComponent> ent, ref ComponentStartup args)
     {
+        _blocker.UpdateCanMove(ent.Owner);
+
         if (HasComp<TrailComponent>(ent))
             return;
 
@@ -74,6 +85,7 @@ public sealed class BubblegumChargeSystem : EntitySystem
 
         RemCompDeferred<TrailComponent>(ent);
         _combat.RemoveBubblegumBusy(ent.Owner);
+        _blocker.UpdateCanMove(ent.Owner);
     }
 
     public void BeginCharge(
@@ -139,10 +151,7 @@ public sealed class BubblegumChargeSystem : EntitySystem
         active.ExpireOnHit = charge.ExpireOnHit;
         active.AlreadySmashed.Clear();
 
-        // Damage all smashable structures on the planned path up front, but do not shorten
-        // the throw vector. Actual collision with those structures is cancelled in
-        // OnChargePreventCollide, otherwise physics can deflect Bubblegum and alter the charge.
-        var ray = new CollisionRay(userMap.Position, direction, (int) CollisionGroup.Impassable);
+        var ray = new CollisionRay(userMap.Position, direction, (int)CollisionGroup.Impassable);
         var rayResults = _physics.IntersectRay(userMap.MapId, ray, distance, user, false);
         foreach (var result in rayResults)
         {
@@ -154,7 +163,7 @@ public sealed class BubblegumChargeSystem : EntitySystem
                 TrySmashStructure(user, active, hit);
         }
 
-        active.EndsAt = _timing.CurTime + TimeSpan.FromSeconds(MathF.Max(0.4f, distance / MathF.Max(1f, charge.Speed)) + 0.5f);
+        active.EndsAt = _timing.CurTime + TimeSpan.FromSeconds(distance / MathF.Max(1f, charge.Speed) + 0.2f);
         Dirty(user, active);
 
         var userXform = Transform(user);
@@ -290,7 +299,7 @@ public sealed class BubblegumChargeSystem : EntitySystem
                     RefreshTargetFromEntity(item, userMapId);
 
                     var lifetime = (float)(item.ExecuteAt - now).TotalSeconds;
-                    var telegraph = Spawn(item.TelegraphProto, item.Target);
+                    var telegraph = Spawn(item.TelegraphProto, item.Target, rotation: Angle.Zero);
                     EnsureComp<TimedDespawnComponent>(telegraph).Lifetime = MathF.Max(0.1f, lifetime);
                     item.TelegraphSpawned = true;
                 }

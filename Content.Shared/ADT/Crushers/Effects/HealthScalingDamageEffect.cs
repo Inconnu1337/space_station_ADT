@@ -44,12 +44,13 @@ public sealed partial class HealthScalingDamageEffect : TrophyEffect
         if (!entManager.TryGetComponent<DamageableComponent>(args.User, out var damageable))
             return;
 
-        if (damageable.TotalDamage <= FixedPoint2.Zero)
+        var totalDamage = damageableSystem.GetTotalDamage((args.User, damageable));
+        if (totalDamage <= FixedPoint2.Zero)
             return;
 
         var scaledDamage = new DamageSpecifier();
         foreach (var type in BonusDamage.DamageDict.Keys)
-            scaledDamage.DamageDict[type] = damageable.TotalDamage * (FixedPoint2)(Multiplier * ScalingFactor);
+            scaledDamage.DamageDict[type] = totalDamage * (FixedPoint2)(Multiplier * ScalingFactor);
 
         foreach (var target in args.HitEntities)
         {

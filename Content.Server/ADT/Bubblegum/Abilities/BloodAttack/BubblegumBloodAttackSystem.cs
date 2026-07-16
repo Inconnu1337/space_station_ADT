@@ -70,7 +70,7 @@ public sealed class BubblegumBloodAttackSystem : EntitySystem
         if (_mobState.IsDead(ent))
             return;
 
-        List<EntityUid> candidates = [];
+        List<(EntityUid Target, MapCoordinates PuddleCoords)> candidates = [];
         _mobBuffer.Clear();
 
         var bossCoords = _transform.GetMapCoordinates(ent);
@@ -91,7 +91,8 @@ public sealed class BubblegumBloodAttackSystem : EntitySystem
             if (pools.Count == 0)
                 continue;
 
-            candidates.Add(mob);
+            var puddleCoords = _transform.GetMapCoordinates(_random.Pick(pools).Owner);
+            candidates.Add((mob, puddleCoords));
             if (candidates.Count >= 2)
                 break;
         }
@@ -104,14 +105,13 @@ public sealed class BubblegumBloodAttackSystem : EntitySystem
         var damage = enraged ? ent.Comp.SmackDamageEnraged : ent.Comp.SmackDamage;
         var handedness = _random.Next(2) == 0;
 
-        foreach (var target in candidates)
+        foreach (var (target, puddleCoords) in candidates)
         {
-            var targetCoords = _transform.GetMapCoordinates(target);
             var isIncapacitated = _mobState.IsIncapacitated(target);
             var doGrab = isIncapacitated || _random.Prob(ent.Comp.GrabConsciousChance);
 
-            SpawnHandTelegraph(ent.Comp, targetCoords, handedness, doGrab);
-            QueueHit(ent.Owner, target, targetCoords, damage, doGrab,
+            SpawnHandTelegraph(ent.Comp, puddleCoords, handedness, doGrab);
+            QueueHit(ent.Owner, target, puddleCoords, damage, doGrab,
                 doGrab ? ent.Comp.GrabHitDelay : ent.Comp.SmackHitDelay);
 
             handedness = !handedness;
@@ -122,12 +122,12 @@ public sealed class BubblegumBloodAttackSystem : EntitySystem
     {
         if (grab)
         {
-            Spawn(right ? comp.RightPawProto : comp.LeftPawProto, coords);
-            Spawn(right ? comp.RightThumbProto : comp.LeftThumbProto, coords);
+            Spawn(right ? comp.RightPawProto : comp.LeftPawProto, coords, rotation: Angle.Zero);
+            Spawn(right ? comp.RightThumbProto : comp.LeftThumbProto, coords, rotation: Angle.Zero);
             return;
         }
 
-        Spawn(right ? comp.RightSmackProto : comp.LeftSmackProto, coords);
+        Spawn(right ? comp.RightSmackProto : comp.LeftSmackProto, coords, rotation: Angle.Zero);
     }
 
     private void QueueHit(EntityUid boss, EntityUid target, MapCoordinates at, float damage, bool isGrab, TimeSpan delay)

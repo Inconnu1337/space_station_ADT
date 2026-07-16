@@ -1,6 +1,7 @@
 using Content.Shared.ADT.Bubblegum;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
@@ -17,7 +18,7 @@ public sealed class BubblegumDevourSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MobThresholdSystem _thresholds = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly TimeSpan PostHitDevourDelay = TimeSpan.FromSeconds(0.5);
@@ -96,7 +97,7 @@ public sealed class BubblegumDevourSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("bubblegum-devour-popup", ("target", target)), boss, PopupType.LargeCaution);
 
-        var gibs = _body.GibBody(target, gibOrgans: true);
+        var gibs = _gibbing.Gib(target, true, boss);
         if (gibs.Count > 0)
             return;
 

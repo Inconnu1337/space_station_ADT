@@ -197,7 +197,7 @@ public sealed class BubblegumLootSystem : EntitySystem
 
         if (TryComp<StackComponent>(spawned.Value, out var stack))
         {
-            _stack.SetCount(spawned.Value, amount, stack);
+            _stack.SetCount((spawned.Value, stack), amount);
             return;
         }
 

@@ -1,7 +1,8 @@
 using System.Linq;
 using Content.Shared.ADT.Bubblegum.Loot;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -19,11 +20,11 @@ public sealed class BloodFrenzySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
@@ -82,8 +83,14 @@ public sealed class BloodFrenzySystem : EntitySystem
         if (ent.Comp.Reagent == null || ent.Comp.ReagentAmount <= 0f)
             return;
 
+        if (!TryComp<BloodstreamComponent>(ent, out var bloodstream))
+            return;
+
+        if (!_solutionContainer.EnsureSolutionEntity(ent.Owner, bloodstream.MetabolitesSolutionName, out var metabolites))
+            return;
+
         var solution = new Solution(ent.Comp.Reagent, FixedPoint2.New(ent.Comp.ReagentAmount));
-        _bloodstream.TryAddToChemicals(ent.Owner, solution);
+        _solutionContainer.TryAddSolution(metabolites.Value, solution);
     }
 
     private void AddObjective(Entity<BloodFrenzyComponent> ent)

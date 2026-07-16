@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.ADT.Bubblegum.Abilities;
-// todo block canmove
+
 public sealed class BubblegumTripleChargeSystem : EntitySystem
 {
     [Dependency] private readonly BubblegumChargeSystem _charge = default!;
@@ -66,7 +66,7 @@ public sealed class BubblegumTripleChargeSystem : EntitySystem
 
     private EntityUid SpawnMarker(string proto, MapCoordinates coords)
     {
-        var marker = Spawn(proto, coords);
+        var marker = Spawn(proto, coords, rotation: Angle.Zero);
         var vis = EnsureComp<VisibilityComponent>(marker);
         _visibility.SetLayer((marker, vis), (ushort)VisibilityFlags.Bubblegum);
         return marker;

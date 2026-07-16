@@ -21,12 +21,13 @@ public sealed class DemonVisionSystem : VisualizerSystem<DemonVisionedComponent>
 
         SubscribeLocalEvent<BloodFrenzyComponent, ComponentStartup>(OnFrenzyStart);
         SubscribeLocalEvent<BloodFrenzyComponent, ComponentShutdown>(OnFrenzyEnd);
-        SubscribeLocalEvent<HumanoidAppearanceComponent, ComponentStartup>(OnHumanoidStartup);
+        SubscribeLocalEvent<HumanoidProfileComponent, ComponentStartup>(OnHumanoidStartup);
 
         SubscribeLocalEvent<DemonVisionedComponent, ComponentStartup>(OnVisionStartup);
         SubscribeLocalEvent<DemonVisionedComponent, ComponentShutdown>(OnVisionShutdown);
-        SubscribeLocalEvent<DemonVisionedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentUpdated);
-        SubscribeLocalEvent<DemonVisionedComponent, HeldVisualsUpdatedEvent>(OnHeldUpdated);
+
+        SubscribeLocalEvent<EquipmentVisualsUpdatedEvent>(OnEquipmentUpdated);
+        SubscribeLocalEvent<HeldVisualsUpdatedEvent>(OnHeldUpdated);
     }
 
     private bool LocalFrenzied()
@@ -40,7 +41,7 @@ public sealed class DemonVisionSystem : VisualizerSystem<DemonVisionedComponent>
         if (_player.LocalEntity != ent.Owner)
             return;
 
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent>();
+        var query = EntityQueryEnumerator<HumanoidProfileComponent>();
         while (query.MoveNext(out var uid, out _))
         {
             if (uid == ent.Owner)
@@ -62,7 +63,7 @@ public sealed class DemonVisionSystem : VisualizerSystem<DemonVisionedComponent>
         }
     }
 
-    private void OnHumanoidStartup(Entity<HumanoidAppearanceComponent> ent, ref ComponentStartup args)
+    private void OnHumanoidStartup(Entity<HumanoidProfileComponent> ent, ref ComponentStartup args)
     {
         if (_player.LocalEntity == ent.Owner || !LocalFrenzied())
             return;
@@ -80,14 +81,16 @@ public sealed class DemonVisionSystem : VisualizerSystem<DemonVisionedComponent>
         RestoreSprite(ent.Owner);
     }
 
-    private void OnEquipmentUpdated(EntityUid uid, DemonVisionedComponent component, EquipmentVisualsUpdatedEvent args)
+    private void OnEquipmentUpdated(EquipmentVisualsUpdatedEvent args)
     {
-        ApplyDemon(uid);
+        if (HasComp<DemonVisionedComponent>(args.Equipee))
+            ApplyDemon(args.Equipee);
     }
 
-    private void OnHeldUpdated(EntityUid uid, DemonVisionedComponent component, HeldVisualsUpdatedEvent args)
+    private void OnHeldUpdated(HeldVisualsUpdatedEvent args)
     {
-        ApplyDemon(uid);
+        if (HasComp<DemonVisionedComponent>(args.User))
+            ApplyDemon(args.User);
     }
 
     protected override void OnAppearanceChange(EntityUid uid, DemonVisionedComponent component, ref AppearanceChangeEvent args)
