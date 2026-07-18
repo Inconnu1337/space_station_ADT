@@ -32,7 +32,6 @@
       effects:
         - !type:MeleeChargeProjectileEffect
           bonusDamage:
-            groups: null
             types:
               Heat: 5
       examineText: adt-kinetic-trophy-magma-wing

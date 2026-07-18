@@ -9,7 +9,7 @@
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="10">
         
         <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
-            <Label Text="Поиск" Align="Left" />
+            <Label Text="{Loc 'mining-shop-window-search'}" Align="Left" />
             <LineEdit Name="Search" Access="Public" HorizontalExpand="True" Margin="10 0 0 0" />
             <Control HorizontalExpand="True" SizeFlagsStretchRatio="0.25" />
             <Label Name="PointsLabel" Access="Public" HorizontalExpand="True" Align="Right" />

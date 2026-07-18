@@ -23,8 +23,9 @@
       0: Alive
       2500: Dead
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Bubblegum
+  - type: Injurable
+    damageContainer: Biological
   - type: MeleeWeapon
     attackRate: 0.5
     damage:
