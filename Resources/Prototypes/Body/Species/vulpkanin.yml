@@ -212,11 +212,19 @@
     sprite:
       sprite: Effects/creampie.rsi
       state: creampie_vulpkanin
-  # ADT-Tweak: Start
+  # ADT tweak start|
+  - type: Sprite
+    scale: 0.95, 0.95
+  - type: SizeAttributeWhitelist
+    tall: true
+    tallscale: 1
+    short: true
+    shortscale: 0.9
   - type: Tag
     tags:
     - ADTDogEmotes
   # ADT-Tweak: End
+
 
 - type: entity
   parent: OrganBaseOrganic
