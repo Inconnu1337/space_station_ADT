@@ -29,7 +29,7 @@
   - ADTTacticBat
 
 - type: thiefBackpackSet
-  id: WeaponSecMk58
+  id: ADTWeaponSecMk58
   name: sec-voucher-mk58-name
   description: sec-voucher-mk58-description
   sprite:
@@ -40,7 +40,7 @@
   - MagazinePistol
 
 - type: thiefBackpackSet
-  id: WeaponLaserSecPistol
+  id: ADTWeaponLaserSecPistol
   name: sec-voucher-laser-name
   description: sec-voucher-laser-description
   sprite:

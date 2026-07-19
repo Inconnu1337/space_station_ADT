@@ -143,8 +143,8 @@
         type: MiningVoucherBoundUserInterface
   - type: MiningVoucher
     kits:
-    - WeaponSecMk58
-    - WeaponLaserSecPistol
+    - ADTWeaponSecMk58
+    - ADTWeaponLaserSecPistol
     typeDropPlace: ThisPlace
     typeDrop: Rocket
 
@@ -167,8 +167,8 @@
         type: MiningVoucherBoundUserInterface
   - type: MiningVoucher
     kits:
-    - ClothingOuterHardsuitSyndie
-    - ClothingModsuitBackSyndicate
+    - ADTClothingOuterHardsuitSyndie
+    - ADTClothingModsuitBackSyndicate
     typeDropPlace: ThisPlace
     typeDrop: Rocket
 
@@ -193,7 +193,7 @@
         type: MiningVoucherBoundUserInterface
   - type: MiningVoucher
     kits:
-    - ClothingEliteHardsuitBackSyndicate
-    - ClothingEliteModsuitBackSyndicate
+    - ADTClothingEliteHardsuitBackSyndicate
+    - ADTClothingEliteModsuitBackSyndicate
     typeDropPlace: ThisPlace
     typeDrop: Rocket
