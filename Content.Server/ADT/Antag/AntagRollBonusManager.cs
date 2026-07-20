@@ -1,7 +1,9 @@
 using Content.Shared.ADT.CCVar;
+using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.ADT.Antag;
 
@@ -17,11 +19,13 @@ public sealed class AntagRollBonusManager
     private bool _enabled;
     private float _bonusPerRound;
 
-    private readonly Dictionary<NetUserId, int> _missedRounds = new();
+    private readonly Dictionary<(NetUserId User, ProtoId<AntagPrototype> Role), int> _missedRounds = new();
 
-    private readonly HashSet<NetUserId> _preSelected = new();
+    private readonly HashSet<(NetUserId User, ProtoId<AntagPrototype> Role)> _preSelected = new();
 
-    private readonly HashSet<NetUserId> _becameAntag = new();
+    private readonly HashSet<(NetUserId User, ProtoId<AntagPrototype> Role)> _becameAntag = new();
+
+    private readonly HashSet<(NetUserId User, ProtoId<AntagPrototype> Role)> _eligible = new();
 
     public void Initialize()
     {
@@ -45,39 +49,50 @@ public sealed class AntagRollBonusManager
         _sawmill.Info($"Bonus per missed round set to {value:P0}. Max weight is now {1f + value * MaxMissedRounds:F2}.");
     }
 
-    public float GetWeight(ICommonSession session)
+    public float GetWeight(ICommonSession session, ProtoId<AntagPrototype> role)
     {
         if (!_enabled)
             return 1f;
 
-        if (!_missedRounds.TryGetValue(session.UserId, out var missed))
+        if (!_missedRounds.TryGetValue((session.UserId, role), out var missed))
             return 1f;
 
         return 1f + _bonusPerRound * missed;
     }
 
-    public int GetMissedRounds(ICommonSession session)
+    public int GetMissedRounds(ICommonSession session, ProtoId<AntagPrototype> role)
     {
-        return _missedRounds.GetValueOrDefault(session.UserId);
+        return _missedRounds.GetValueOrDefault((session.UserId, role));
     }
 
-    public void MarkPreSelected(ICommonSession session)
+    public void MarkEligible(IEnumerable<ICommonSession> sessions, ProtoId<AntagPrototype> role)
     {
         if (!_enabled)
             return;
 
-        _preSelected.Add(session.UserId);
+        foreach (var session in sessions)
+        {
+            _eligible.Add((session.UserId, role));
+        }
     }
 
-    public void MarkBecameAntag(ICommonSession session)
+    public void MarkPreSelected(ICommonSession session, ProtoId<AntagPrototype> role)
     {
         if (!_enabled)
             return;
 
-        if (!_preSelected.Contains(session.UserId))
+        _preSelected.Add((session.UserId, role));
+    }
+
+    public void MarkBecameAntag(ICommonSession session, ProtoId<AntagPrototype> role)
+    {
+        if (!_enabled)
             return;
 
-        _becameAntag.Add(session.UserId);
+        if (!_preSelected.Contains((session.UserId, role)))
+            return;
+
+        _becameAntag.Add((session.UserId, role));
     }
 
     public void FinishRound(IEnumerable<NetUserId> participants)
@@ -88,37 +103,61 @@ public sealed class AntagRollBonusManager
             return;
         }
 
-        var reset = 0;
+        var played = new HashSet<NetUserId>(participants);
+
+        var wasAntag = new HashSet<NetUserId>();
+        foreach (var (user, _) in _becameAntag)
+        {
+            wasAntag.Add(user);
+        }
+
+        var cleared = 0;
+        if (wasAntag.Count > 0)
+        {
+            var stale = new List<(NetUserId User, ProtoId<AntagPrototype> Role)>();
+            foreach (var key in _missedRounds.Keys)
+            {
+                if (wasAntag.Contains(key.User))
+                    stale.Add(key);
+            }
+
+            foreach (var key in stale)
+            {
+                _missedRounds.Remove(key);
+            }
+
+            cleared = stale.Count;
+        }
+
         var increased = 0;
         var capped = 0;
 
-        foreach (var user in participants)
+        foreach (var key in _eligible)
         {
-            if (_becameAntag.Contains(user))
-            {
-                _missedRounds.Remove(user);
-                reset++;
+            if (!played.Contains(key.User))
                 continue;
-            }
 
-            var missed = _missedRounds.GetValueOrDefault(user);
+            if (wasAntag.Contains(key.User))
+                continue;
+
+            var missed = _missedRounds.GetValueOrDefault(key);
             if (missed >= MaxMissedRounds)
             {
                 capped++;
                 continue;
             }
 
-            _missedRounds[user] = missed + 1;
+            _missedRounds[key] = missed + 1;
             increased++;
         }
 
-        _preSelected.Clear();
-        _becameAntag.Clear();
+        ClearRoundState();
     }
 
     public void ClearRoundState()
     {
         _preSelected.Clear();
         _becameAntag.Clear();
+        _eligible.Clear();
     }
 }

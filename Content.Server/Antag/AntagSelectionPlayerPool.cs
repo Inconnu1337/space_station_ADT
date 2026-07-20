@@ -58,4 +58,8 @@ public sealed class AntagSelectionPlayerPool (List<List<ICommonSession>> ordered
     // ADT-Tweak-End
 
     public int Count => orderedPools.Sum(p => p.Count);
+
+    // ADT-Tweak-Start
+    public IEnumerable<ICommonSession> AllCandidates => orderedPools.SelectMany(p => p);
+    // ADT-Tweak-End
 }

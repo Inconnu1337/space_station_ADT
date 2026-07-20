@@ -283,6 +283,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         bool midround = false)
     {
         var playerPool = GetPlayerPool(ent, pool, def);
+
+        // ADT-Tweak-Start
+        var bonusRole = GetRollBonusRole(def);
+        if (!midround && bonusRole != null)
+            _rollBonus.MarkEligible(playerPool.AllCandidates, bonusRole.Value);
+        // ADT-Tweak-End
+
         var existingAntagCount = ent.Comp.PreSelectedSessions.TryGetValue(def, out var existingAntags) ? existingAntags.Count : 0;
         var count = GetTargetAntagCount(ent, GetTotalPlayerCount(pool), def) - existingAntagCount;
 
@@ -324,8 +331,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     ent.Comp.PreSelectedSessions.Add(def, set = new HashSet<ICommonSession>());
                 set.Add(session); // Selection done!
                 // ADT-Tweak-Start
-                if (!midround)
-                    _rollBonus.MarkPreSelected(session);
+                if (!midround && bonusRole != null)
+                    _rollBonus.MarkPreSelected(session, bonusRole.Value);
                 // ADT-Tweak-End
                 Log.Debug($"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
                 _adminLogger.Add(LogType.AntagSelection, $"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
@@ -500,7 +507,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             SendBriefing(session, def.Briefing);
 
             // ADT-Tweak-Start
-            _rollBonus.MarkBecameAntag(session);
+            var bonusRole = GetRollBonusRole(def);
+            if (bonusRole != null)
+                _rollBonus.MarkBecameAntag(session, bonusRole.Value);
             // ADT-Tweak-End
 
             Log.Debug($"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
@@ -541,9 +550,27 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         RobustRandom.Shuffle(preferredList);
         RobustRandom.Shuffle(fallbackList);
 
-        return new AntagSelectionPlayerPool(new() { preferredList, fallbackList }, _rollBonus.GetWeight);
+        var bonusRole = GetRollBonusRole(def);
+        if (bonusRole == null)
+            return new AntagSelectionPlayerPool(new() { preferredList, fallbackList });
+
+        var role = bonusRole.Value;
+        return new AntagSelectionPlayerPool(new() { preferredList, fallbackList }, s => _rollBonus.GetWeight(s, role));
         // ADT-Tweak-End
     }
+
+    // ADT-Tweak-Start
+    private static ProtoId<AntagPrototype>? GetRollBonusRole(AntagSelectionDefinition def)
+    {
+        if (def.PrefRoles.Count > 0)
+            return def.PrefRoles[0];
+
+        if (def.FallbackRoles.Count > 0)
+            return def.FallbackRoles[0];
+
+        return null;
+    }
+    // ADT-Tweak-End
 
     /// <summary>
     /// Checks if a given session is valid for an antagonist.
