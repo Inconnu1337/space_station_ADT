@@ -361,7 +361,7 @@ public sealed class ADTCCVars
         CVarDef.Create("antag.roll_bonus_enabled", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<float> AntagRollBonusPerRound =
-        CVarDef.Create("antag.roll_bonus_per_round", 0.1f, CVar.SERVERONLY);
+        CVarDef.Create("antag.roll_bonus_per_round", 0.15f, CVar.SERVERONLY);
 
 }
 
