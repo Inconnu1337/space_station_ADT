@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.ADT.Antag;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
@@ -55,6 +56,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ArrivalsSystem _arrivals = default!;
+    [Dependency] private readonly AntagRollBonusManager _rollBonus = default!;
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -321,6 +323,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 if (!ent.Comp.PreSelectedSessions.TryGetValue(def, out var set))
                     ent.Comp.PreSelectedSessions.Add(def, set = new HashSet<ICommonSession>());
                 set.Add(session); // Selection done!
+                // ADT-Tweak-Start
+                if (!midround)
+                    _rollBonus.MarkPreSelected(session);
+                // ADT-Tweak-End
                 Log.Debug($"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
                 _adminLogger.Add(LogType.AntagSelection, $"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
             }
@@ -493,6 +499,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             ent.Comp.AssignedMinds.Add((curMind.Value, Name(player)));
             SendBriefing(session, def.Briefing);
 
+            // ADT-Tweak-Start
+            _rollBonus.MarkBecameAntag(session);
+            // ADT-Tweak-End
+
             Log.Debug($"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
             _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
         }
@@ -527,7 +537,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             }
         }
 
-        return new AntagSelectionPlayerPool(new() { preferredList, fallbackList });
+        // ADT-Tweak-Start
+        RobustRandom.Shuffle(preferredList);
+        RobustRandom.Shuffle(fallbackList);
+
+        return new AntagSelectionPlayerPool(new() { preferredList, fallbackList }, _rollBonus.GetWeight);
+        // ADT-Tweak-End
     }
 
     /// <summary>
