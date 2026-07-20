@@ -11,13 +11,11 @@ public sealed class AntagRollBonusSystem : EntitySystem
 
     public static readonly TimeSpan AbortedRoundCountsAfter = TimeSpan.FromHours(1);
 
-    private ISawmill _sawmill = default!;
-
     public override void Initialize()
     {
         base.Initialize();
 
-        _sawmill = Logger.GetSawmill("antag.rollbonus");
+        SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
