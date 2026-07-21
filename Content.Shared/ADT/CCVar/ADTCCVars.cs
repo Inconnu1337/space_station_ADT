@@ -390,5 +390,11 @@ public sealed class ADTCCVars
 
     public static readonly CVarDef<float> AntagRollBonusPerRound =
         CVarDef.Create("antag.roll_bonus_per_round", 0.15f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> AntagRollBonusInfoRateLimitPeriod =
+        CVarDef.Create("antag.roll_bonus_info_rate_limit_period", 5f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> AntagRollBonusInfoRateLimitCount =
+        CVarDef.Create("antag.roll_bonus_info_rate_limit_count", 3, CVar.SERVERONLY);
 }
 
