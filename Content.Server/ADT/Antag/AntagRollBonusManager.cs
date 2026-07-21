@@ -65,6 +65,18 @@ public sealed class AntagRollBonusManager
         return _missedRounds.GetValueOrDefault((session.UserId, role));
     }
 
+    public Dictionary<ProtoId<AntagPrototype>, float> GetWeights(ICommonSession session, IEnumerable<ProtoId<AntagPrototype>> roles)
+    {
+        var result = new Dictionary<ProtoId<AntagPrototype>, float>();
+
+        foreach (var role in roles)
+        {
+            result[role] = GetWeight(session, role);
+        }
+
+        return result;
+    }
+
     public void MarkEligible(IEnumerable<ICommonSession> sessions, ProtoId<AntagPrototype> role)
     {
         if (!_enabled)
