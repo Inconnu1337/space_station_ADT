@@ -17,7 +17,6 @@ public sealed class AntagRollBonusSystem : EntitySystem
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
 
-        SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
