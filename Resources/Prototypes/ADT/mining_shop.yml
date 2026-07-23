@@ -34,6 +34,8 @@
   id: Motion
   name: Выживание
   entries:
+  - id: ADTGpsMining
+    price: 250
   - id: FultonBeacon
     price: 1000
   - id: Fulton

@@ -49,6 +49,10 @@
   description: bublbegum desc
   parent: BaseMobBubblegum
   components:
+  - type: GpsSignal
+    tag: adt-gps-signal-bubblegum
+    description: adt-gps-signal-bubblegum-desc
+    color: "#B32020"
   - type: Destructible
     thresholds: []
   - type: GenericVisualizer
