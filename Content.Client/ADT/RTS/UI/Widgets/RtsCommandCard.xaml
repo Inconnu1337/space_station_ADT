@@ -1,0 +1,6 @@
+<widgets:RtsCommandCard xmlns="https://spacestation14.io"
+                        xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets">
+    <PanelContainer Name="Background">
+        <GridContainer Name="Grid" Columns="6" HSeparationOverride="2" VSeparationOverride="2" />
+    </PanelContainer>
+</widgets:RtsCommandCard>

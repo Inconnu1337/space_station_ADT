@@ -1,0 +1,58 @@
+# Сущность-камера игрока в RTS.
+# Это принципиально НЕ призрак: у GhostComponent полный обзор и он игнорирует маски
+# видимости, что полностью сломало бы туман войны.
+# См. Docs/ADT/RTS/RTS_MASTER_PLAN.md §4.1.
+- type: entity
+  id: ADTRtsCamera
+  name: RTS camera
+  description: Камера командующего. Игрок её не видит.
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RtsCamera
+  - type: Eye
+    drawFov: false
+  - type: ContentEye
+    maxZoom: 2.4,2.4
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 25
+    baseSprintSpeed: 18
+  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        layer:
+        - GhostImpassable
+  # Собственный контекст: наследует "common", но не "human", поэтому в RTS нет
+  # станционных биндов и правая кнопка мыши свободна под приказы.
+  - type: Input
+    context: "rts"
+
+# Невидимая рамка по периметру арены. Фикстуры создаются в рантайме под размер арены
+# (RtsMapGenSystem), потому что размер арены — параметр матча, а не прототипа.
+#
+# Барьер именно физический: раньше камера подрезалась по координате каждый тик, и на
+# клиенте это выглядело рывками — предсказание уводило камеру за край, а состояние
+# сервера возвращало назад. Физика предсказывается штатно, поэтому в стену камера
+# упирается плавно.
+- type: entity
+  id: ADTRtsArenaBorder
+  name: arena border
+  description: Невидимая граница арены RTS.
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures

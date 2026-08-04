@@ -53,8 +53,10 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         EscapeButton.OnPressed += EscapeButtonOnOnPressed;
     }
 
-    private void ActivateButton() => EscapeButton!.SetClickPressed(true);
-    private void DeactivateButton() => EscapeButton!.SetClickPressed(false);
+    // ADT RTS: кнопка живёт в GameTopMenuBar, а на экранах без него (например RTS) её нет.
+    // До сих пор это не всплывало, потому что все игровые экраны содержали верхнее меню.
+    private void ActivateButton() => EscapeButton?.SetClickPressed(true);
+    private void DeactivateButton() => EscapeButton?.SetClickPressed(false);
 
     public void OnStateEntered(GameplayState state)
     {
@@ -160,12 +162,18 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         if (_escapeWindow.IsOpen)
         {
             CloseEscapeWindow();
-            EscapeButton!.Pressed = false;
+
+            // ADT RTS: на экране без GameTopMenuBar кнопки нет.
+            if (EscapeButton != null)
+                EscapeButton.Pressed = false;
         }
         else
         {
             _escapeWindow.OpenCentered();
-            EscapeButton!.Pressed = true;
+
+            // ADT RTS: на экране без GameTopMenuBar кнопки нет.
+            if (EscapeButton != null)
+                EscapeButton.Pressed = true;
         }
     }
 }

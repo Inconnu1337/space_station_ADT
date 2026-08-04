@@ -16,5 +16,10 @@ namespace Content.Shared.Eye
         LingToxin = 1 << 6, // ADT-Changeling-Tweak
         Eldritch = 1 << 7, // ADT-Tweak Heretic
         Bubblegum = 1 << 8, // ADT-Tweak Bubblegum
+        // ADT RTS: по биту на команду матча. Вражеская сущность получает бит команды,
+        // которая её видит, и теряет его, когда уходит в туман, — так враг не попадает
+        // в PVS вовсе. См. Docs/ADT/RTS/RTS_MASTER_PLAN.md §6.3.
+        RtsTeamA = 1 << 9,
+        RtsTeamB = 1 << 10,
     }
 }

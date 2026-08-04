@@ -1,0 +1,10 @@
+<widgets:RtsAlertsPanel xmlns="https://spacestation14.io"
+                        xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets">
+    <PanelContainer Name="Background">
+        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <Button Name="IdleWorkerButton" MinSize="52 52" Disabled="True" />
+            <Button Name="UnderAttackButton" MinSize="52 52" Disabled="True" />
+            <Button Name="LeaveButton" MinSize="52 52" />
+        </BoxContainer>
+    </PanelContainer>
+</widgets:RtsAlertsPanel>

@@ -1,0 +1,30 @@
+<widgets:RtsSelectionPanel xmlns="https://spacestation14.io"
+                           xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets">
+    <PanelContainer Name="Background">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                <PanelContainer Name="PortraitBox" MinSize="120 96">
+                    <Label Name="UnitName" Text="" Align="Center" VAlign="Top" />
+                </PanelContainer>
+                <PanelContainer Name="HealthBox" MinSize="120 20">
+                    <Label Name="HealthValue" Text="" Align="Center" />
+                </PanelContainer>
+            </BoxContainer>
+
+            <PanelContainer Name="StatsBox" MinSize="130 120">
+                <BoxContainer Name="Stats" Orientation="Vertical" SeparationOverride="2">
+                    <Label Name="AttackValue" Text="" />
+                    <Label Name="ArmorValue" Text="" />
+                    <Label Name="RangeValue" Text="" />
+                    <Label Name="SpeedValue" Text="" />
+                </BoxContainer>
+            </PanelContainer>
+
+            <PanelContainer Name="QueueBox" MinSize="110 120">
+                <BoxContainer Name="Queue" Orientation="Vertical" SeparationOverride="2">
+                    <Label Name="QueueTitle" Text="" Align="Center" />
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</widgets:RtsSelectionPanel>

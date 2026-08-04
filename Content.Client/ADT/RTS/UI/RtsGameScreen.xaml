@@ -1,0 +1,17 @@
+<ui:RtsGameScreen xmlns="https://spacestation14.io"
+                  xmlns:ui="clr-namespace:Content.Client.ADT.RTS.UI"
+                  xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets"
+                  xmlns:chat="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
+                  xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                  Name="RtsHud">
+    <LayoutContainer Name="ViewportContainer" HorizontalExpand="True" VerticalExpand="True">
+        <controls:MainViewport Name="MainViewport" MouseFilter="Pass" />
+    </LayoutContainer>
+
+    <widgets:RtsResourcePanel Name="Resources" Access="Public" />
+    <widgets:RtsAlertsPanel Name="Alerts" Access="Public" />
+    <widgets:RtsCommandCard Name="CommandCard" Access="Public" />
+    <widgets:RtsSelectionPanel Name="Selection" Access="Public" />
+    <widgets:RtsMinimapPanel Name="Minimap" Access="Public" />
+    <chat:ChatBox Name="Chat" Access="Protected" />
+</ui:RtsGameScreen>

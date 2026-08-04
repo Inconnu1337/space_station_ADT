@@ -106,8 +106,18 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.OpenCentered();
         _window.Close();
 
-        _window.OnOpen += () => { SandboxButton!.Pressed = true; };
-        _window.OnClose += () => { SandboxButton!.Pressed = false; };
+        // ADT RTS: кнопка живёт в GameTopMenuBar, а на экранах без него (например RTS) её нет.
+        _window.OnOpen += () =>
+        {
+            if (SandboxButton != null)
+                SandboxButton.Pressed = true;
+        };
+
+        _window.OnClose += () =>
+        {
+            if (SandboxButton != null)
+                SandboxButton.Pressed = false;
+        };
 
         _window.AiOverlayButton.OnPressed += args =>
         {

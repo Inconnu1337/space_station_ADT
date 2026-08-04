@@ -1,0 +1,8 @@
+<widgets:RtsMinimapPanel xmlns="https://spacestation14.io"
+                         xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets">
+    <PanelContainer Name="Background">
+        <PanelContainer Name="MapBox" MinSize="200 200">
+            <Label Name="Placeholder" Text="" Align="Center" />
+        </PanelContainer>
+    </PanelContainer>
+</widgets:RtsMinimapPanel>

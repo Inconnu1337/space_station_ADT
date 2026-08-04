@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Client.ADT.RTS; // ADT RTS
+using Content.Client.ADT.RTS.UI; // ADT RTS
 using Content.Client.Changelog;
 using Content.Client.Hands;
 using Content.Client.UserInterface.Controls;
@@ -113,6 +115,15 @@ namespace Content.Client.Gameplay
 
         private void LoadMainScreen()
         {
+            // ADT RTS START: в матче показываем собственный экран вместо станционного HUD.
+            if (_uiManager.GetUIController<RtsHudUIController>().IsInMatch)
+            {
+                _uiManager.LoadScreen<RtsGameScreen>();
+                _loadController.LoadScreen();
+                return;
+            }
+            // ADT RTS END.
+
             var screenTypeString = _configurationManager.GetCVar(CCVars.UILayout);
             if (!Enum.TryParse(screenTypeString, out ScreenType screenType))
             {

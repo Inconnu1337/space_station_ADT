@@ -1,0 +1,104 @@
+# Сверхлёгкие RTS-сущности.
+#
+# ВАЖНО: здесь запрещены Damageable, MobState, Body, Respirator, Barotrauma, Temperature,
+# Flammable, Hands, Inventory, InputMover и прочие мобные и станционные компоненты.
+# Полный чёрный список — Docs/ADT/RTS/RTS_MASTER_PLAN.md §8.7.
+#
+# Спрайты — существующие ассеты SS14, новый арт не рисуем. Цвет команды навешивается кодом.
+
+- type: entity
+  id: ADTRtsUnitBase
+  abstract: true
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RtsSelectable
+  - type: RtsHealth
+  - type: RtsMovement
+  - type: RtsOrderQueue
+  - type: RtsVision
+  - type: Visibility
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: Physics
+    bodyType: KinematicController
+    fixedRotation: true
+  # Слой GhostImpassable без маски даёт ровно то, что нужно: юнит упирается в границу
+  # арены (у неё этот слой в маске), но НЕ сталкивается с другими юнитами и с камерой.
+  # Юниты разводит мягкая сила расталкивания в RtsMovementSystem: жёсткие столкновения
+  # кинематических тел вместо этого дают заторы. MobLayer тут не годится — он Opaque,
+  # то есть юниты начали бы перекрывать свет.
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.32
+        density: 40
+        hard: true
+        layer:
+        - GhostImpassable
+
+- type: entity
+  parent: ADTRtsUnitBase
+  id: ADTRtsWorker
+  name: рудокоп
+  description: Рубит лес, копает руду, строит.
+  components:
+  - type: RtsUnit
+    populationCost: 1
+    radius: 0.32
+  - type: RtsSelectable
+    priority: 10
+    markerRadius: 0.42
+  - type: RtsHealth
+    health: 25
+    maxHealth: 25
+    armorClass: Unarmored
+  - type: RtsMovement
+    speed: 3.2
+  - type: RtsVision
+    range: 7
+  - type: Sprite
+    sprite: Mobs/Silicon/drone.rsi
+    state: drone
+
+- type: entity
+  id: ADTRtsTownHall
+  name: ратуша
+  description: Сердце базы. Нанимает рабочих и принимает добытые ресурсы.
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RtsSelectable
+    priority: 1
+    markerRadius: 1.1
+  - type: RtsVision
+    range: 10
+  - type: Visibility
+  - type: RtsHealth
+    health: 600
+    maxHealth: 600
+    armorClass: Building
+    armor: 2
+  - type: Sprite
+    noRot: true
+    drawdepth: Walls
+    sprite: Structures/Furniture/bookshelf.rsi
+    state: base
+    scale: 2, 2
+  - type: Physics
+    bodyType: Static
+  # Здания пока не блокируют проход физически: в фазе 6 они будут закрывать тайлы в
+  # костмапе, и юниты начнут обходить их через flow field, а не упираться телами.
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.0
+        density: 200
+        hard: true
+        layer:
+        - GhostImpassable

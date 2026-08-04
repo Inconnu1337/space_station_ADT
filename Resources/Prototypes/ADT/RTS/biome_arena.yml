@@ -1,0 +1,64 @@
+# Биом арены RTS. Отвечает ТОЛЬКО за рельеф (тайлы и декали).
+# Ресурсные узлы (деревья, руда, поля) биомом не расставляются: они ставятся точечно-
+# симметрично кодом в RtsMapGenSystem, иначе стартовые позиции игроков будут неравными.
+# См. Docs/ADT/RTS/RTS_MASTER_PLAN.md §3.1.
+- type: biomeTemplate
+  id: ADTRtsArena
+  layers:
+    # Базовый слой: трава по всей арене.
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorPlanetGrass
+
+    # Проплешины земли: делают карту читаемой и дают ориентиры.
+    - !type:BiomeTileLayer
+      threshold: 0.42
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 0.03
+        octaves: 3
+        lacunarity: 2
+      tile: FloorPlanetDirt
+
+    # Каменистые участки. В фазе 3 станут непроходимыми для юнитов.
+    - !type:BiomeTileLayer
+      threshold: 0.72
+      noise:
+        seed: 4
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 0.025
+        octaves: 3
+        lacunarity: 2
+      tile: FloorAsteroidSand
+
+    # Редкая растительность для вида. Декали ничего не блокируют.
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorPlanetGrass
+      divisions: 1
+      threshold: 0.55
+      noise:
+        seed: 8
+        noiseType: OpenSimplex2
+        frequency: 0.8
+      decals:
+        - BushAOne
+        - BushATwo
+        - BushAThree
+
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorPlanetGrass
+      divisions: 1
+      threshold: 0.82
+      noise:
+        seed: 12
+        noiseType: OpenSimplex2
+        frequency: 1
+      decals:
+        - FlowersBROne
+        - FlowersBRTwo
+        - FlowersBRThree

@@ -1,0 +1,46 @@
+<widgets:RtsResourcePanel xmlns="https://spacestation14.io"
+                          xmlns:widgets="clr-namespace:Content.Client.ADT.RTS.UI.Widgets">
+    <BoxContainer Orientation="Vertical" SeparationOverride="2">
+        <BoxContainer Name="WoodRow" Orientation="Horizontal" SeparationOverride="2">
+            <PanelContainer Name="WoodIcon" MinSize="40 32" />
+            <PanelContainer Name="WoodBar" MinSize="190 32">
+                <Label Name="WoodValue" Text="0/10000" Align="Center" />
+            </PanelContainer>
+            <PanelContainer Name="WoodCountBox" MinSize="44 32">
+                <Label Name="WoodCount" Text="0" Align="Center" />
+            </PanelContainer>
+        </BoxContainer>
+
+        <BoxContainer Name="WheatRow" Orientation="Horizontal" SeparationOverride="2">
+            <PanelContainer Name="WheatIcon" MinSize="40 32" />
+            <PanelContainer Name="WheatBar" MinSize="190 32">
+                <Label Name="WheatValue" Text="0/10000" Align="Center" />
+            </PanelContainer>
+            <PanelContainer Name="WheatCountBox" MinSize="44 32">
+                <Label Name="WheatCount" Text="0" Align="Center" />
+            </PanelContainer>
+        </BoxContainer>
+
+        <BoxContainer Name="OreRow" Orientation="Horizontal" SeparationOverride="2">
+            <PanelContainer Name="OreIcon" MinSize="40 32" />
+            <PanelContainer Name="OreBar" MinSize="190 32">
+                <Label Name="OreValue" Text="0/10000" Align="Center" />
+            </PanelContainer>
+            <PanelContainer Name="OreCountBox" MinSize="44 32">
+                <Label Name="OreCount" Text="0" Align="Center" />
+            </PanelContainer>
+        </BoxContainer>
+
+        <Control MinSize="0 6" />
+
+        <BoxContainer Name="PopRow" Orientation="Horizontal" SeparationOverride="2">
+            <PanelContainer Name="PopIcon" MinSize="40 32" />
+            <PanelContainer Name="PopBar" MinSize="190 32">
+                <Label Name="PopValue" Text="0/0" Align="Center" />
+            </PanelContainer>
+            <PanelContainer Name="PopCountBox" MinSize="44 32">
+                <Label Name="PopCount" Text="0" Align="Center" />
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</widgets:RtsResourcePanel>

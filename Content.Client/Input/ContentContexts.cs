@@ -1,6 +1,7 @@
 using Content.Shared.Input;
 using Robust.Shared.Input;
 using Content.Shared._RMC14.Input; // ADT TWEAK
+using Content.Shared.ADT.RTS.Input; // ADT RTS
 
 namespace Content.Client.Input
 {
@@ -137,7 +138,37 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
 
             CMFunctions(contexts); // ADT TWEAK
+            RtsFunctions(contexts); // ADT RTS
         }
+
+    // ADT RTS START:
+        /// <summary>
+        /// Контекст RTS-режима. Наследует "common" (чат, скриншоты, зум), но НЕ наследует
+        /// "human": в нём нет ни рук, ни предметов, ни контекстного меню — именно поэтому
+        /// правая кнопка мыши свободна под приказы юнитам.
+        /// См. Docs/ADT/RTS/RTS_MASTER_PLAN.md §4.2.
+        /// </summary>
+        private static void RtsFunctions(IInputContextContainer contexts)
+        {
+            var rts = contexts.New("rts", "common");
+
+            rts.AddFunction(EngineKeyFunctions.MoveUp);
+            rts.AddFunction(EngineKeyFunctions.MoveDown);
+            rts.AddFunction(EngineKeyFunctions.MoveLeft);
+            rts.AddFunction(EngineKeyFunctions.MoveRight);
+            rts.AddFunction(EngineKeyFunctions.Walk);
+
+            rts.AddFunction(RtsKeyFunctions.RtsSelect);
+            rts.AddFunction(RtsKeyFunctions.RtsOrder);
+            rts.AddFunction(RtsKeyFunctions.RtsAttackMove);
+            rts.AddFunction(RtsKeyFunctions.RtsStop);
+            rts.AddFunction(RtsKeyFunctions.RtsHoldPosition);
+            rts.AddFunction(RtsKeyFunctions.RtsPatrol);
+            rts.AddFunction(RtsKeyFunctions.RtsIdleWorker);
+            rts.AddFunction(RtsKeyFunctions.RtsLastEvent);
+            rts.AddFunction(RtsKeyFunctions.RtsLeaveMatch);
+        }
+    // ADT RTS END.
 
     // ADT TWEAK START:
         private static void CMFunctions(IInputContextContainer contexts)

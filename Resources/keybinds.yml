@@ -687,3 +687,58 @@ binds:
   type: State
   key: E
 # ADT-Tweak-end
+
+# ADT RTS start
+# Контекст "rts" наследует "common", отказаться от наследования движок не даёт:
+# контекст без родителя умеет создавать только сам движок, и то один раз, для "common".
+#
+# Поэтому пересечения решаются приоритетом. InputManager перебирает биндинги от
+# большего priority к меньшему и останавливается на первом, который пометил событие
+# обработанным. Функция без зарегистрированного InputCmdHandler ничего не помечает и
+# просто проваливается в станционный бинд.
+#
+# Следствие: пока у RTS-функции нет обработчика, клавиша ведёт себя как обычно —
+# F1 в матче всё ещё откроет AHelp. Как только в фазе 8 появится обработчик, клавишу
+# заберёт RTS, и только внутри контекста "rts": вне матча приоритет не действует,
+# потому что функции нет в активном контексте.
+#
+# Камера ездит на WASD (EngineKeyFunctions.Move*), поэтому командные хоткеи уведены
+# с WASD. Финальная сетка хоткеев в стиле SC2 выбирается в фазе 8.
+# См. Docs/ADT/RTS/RTS_MASTER_PLAN.md §4.2.
+- function: RtsSelect
+  type: State
+  key: MouseLeft
+  canFocus: true
+- function: RtsOrder
+  type: State
+  key: MouseRight
+  canFocus: true
+- function: RtsAttackMove
+  type: State
+  key: V
+- function: RtsStop
+  type: State
+  key: X
+- function: RtsHoldPosition
+  type: State
+  key: H
+- function: RtsPatrol
+  type: State
+  key: B
+  priority: 20
+- function: RtsIdleWorker
+  type: State
+  key: F1
+  priority: 20
+- function: RtsLastEvent
+  type: State
+  key: F6
+  priority: 20
+# Единственный из этой группы, у кого уже есть обработчик, поэтому F10 в матче
+# перестаёт открывать меню Escape. Меню остаётся доступным по Escape, а выход из
+# матча продублирован кнопкой в панели справа.
+- function: RtsLeaveMatch
+  type: State
+  key: F10
+  priority: 20
+# ADT RTS end
