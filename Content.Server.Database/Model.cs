@@ -55,10 +55,13 @@ namespace Content.Server.Database
         public DbSet<AntagRollBonus> AntagRollBonus { get; set; } = null!;
         public DbSet<AntagRollBonusWipe> AntagRollBonusWipe { get; set; } = null!;
         // ADT-AntagRollBonus-End
-        // ADT-Tweak-Start
+        // ADT-ADTSponsors-Start
         public DbSet<AdtSponsorTier> AdtSponsorTier { get; set; } = null!;
         public DbSet<AdtSponsorGrant> AdtSponsorGrant { get; set; } = null!;
         public DbSet<AdtSponsorPreference> AdtSponsorPreference { get; set; } = null!;
+        // ADT-ADTSponsors-End
+        // ADT-AdminLogs-Start
+        public DbSet<AdtAdminLogChunk> AdtAdminLogChunk { get; set; } = null!;
         // ADT-Tweak-End
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
 
@@ -102,7 +105,7 @@ namespace Content.Server.Database
                 .IsUnique();
             // ADT-AntagRollBonus-End
 
-            // ADT-Tweak-Start
+            // ADT-ADTSponsors-Start
             modelBuilder.Entity<AdtSponsorTier>()
                 .HasIndex(p => p.Name)
                 .IsUnique();
@@ -119,7 +122,14 @@ namespace Content.Server.Database
             modelBuilder.Entity<AdtSponsorPreference>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
-            // ADT-Tweak-End
+            // ADT-ADTSponsors-End
+            // ADT-AdminLogs-Start
+            modelBuilder.Entity<AdtAdminLogChunk>()
+                .HasKey(chunk => new { chunk.RoundId, chunk.ChunkIndex });
+
+            modelBuilder.Entity<AdtAdminLogChunk>()
+                .HasIndex(chunk => chunk.FirstDate);
+            // ADT-AdminLogs-End
 
             modelBuilder.Entity<Profile>()
                 .HasIndex(p => new {p.Slot, PrefsId = p.PreferenceId})
@@ -779,7 +789,7 @@ namespace Content.Server.Database
     }
     // ADT-AntagRollBonus-End
 
-    // ADT-Tweak-Start
+    // ADT-ADTSponsors-Start
     public class AdtSponsorTier
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -852,7 +862,55 @@ namespace Content.Server.Database
 
         public string? GhostColor { get; set; }
     }
-    // ADT-Tweak-End
+    // ADT-ADTSponsors-End
+
+    // ADT-AdminLogs-Start
+    public class AdtAdminLogChunk
+    {
+        public int RoundId { get; set; }
+
+        public int ChunkIndex { get; set; }
+
+        /// <summary>
+        /// Версия раскладки <see cref="Payload"/>.
+        /// </summary>
+        public byte Format { get; set; }
+
+        public int LogCount { get; set; }
+
+        public int FirstLogId { get; set; }
+
+        public int LastLogId { get; set; }
+
+        public DateTime FirstDate { get; set; }
+
+        public DateTime LastDate { get; set; }
+
+        /// <summary>
+        /// Размер распакованного <see cref="Payload"/> в байтах.
+        /// </summary>
+        public int RawSize { get; set; }
+
+        public byte Flags { get; set; }
+
+        /// <summary>
+        /// Битовая маска <see cref="LogImpact"/>, присутствующих в чанке.
+        /// </summary>
+        public byte ImpactMask { get; set; }
+
+        /// <summary>
+        /// Битовая маска <see cref="LogType"/>, присутствующих в чанке.
+        /// </summary>
+        public byte[] TypeMask { get; set; } = default!;
+
+        /// <summary>
+        /// Уникальные игроки чанка, по 16 байт на Guid
+        /// </summary>
+        public byte[] Players { get; set; } = default!;
+
+        public byte[] Payload { get; set; } = default!;
+    }
+    // ADT-AdminLogs-End
 
     public class Round
     {

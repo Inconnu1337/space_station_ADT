@@ -100,6 +100,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _sawmill = _logManager.GetSawmill(SawmillId);
 
         InitializeJson();
+        InitializeAdtStore(); // ADT-Tweak
 
         _configuration.OnValueChanged(CVars.MetricsEnabled,
             value => _metricsEnabled = value, true);
@@ -247,7 +248,11 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         _preRoundLogQueue.Clear();
         PreRoundQueue.Set(0);
 
-        var task = _db.AddAdminLogs(copy);
+        // ADT-Tweak-Start
+        var task = AdtStore.Enabled
+            ? SaveAdtLogs(copy)
+            : _db.AddAdminLogs(copy);
+        // ADT-Tweak-End
 
         _sawmill.Debug($"Saving {copy.Count} admin logs.");
 
@@ -547,6 +552,13 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     public async Task<List<SharedAdminLog>> All(LogFilter? filter = null, Func<List<SharedAdminLog>>? listProvider = null)
     {
+        // ADT-Tweak-Start
+        var adtLogs = await AdtStore.TryGetLogs(filter, listProvider);
+
+        if (adtLogs != null)
+            return adtLogs;
+        // ADT-Tweak-End
+
         if (TrySearchCache(filter, out var results))
         {
             return results;
@@ -613,8 +625,13 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         return Round(_currentRoundId);
     }
 
-    public Task<int> CountLogs(int round)
+    // ADT-Tweak-Start
+    public async Task<int> CountLogs(int round)
     {
-        return _db.CountAdminLogs(round);
+        if (await AdtStore.TryCountLogs(round) is { } adtCount)
+            return adtCount;
+
+        return await _db.CountAdminLogs(round);
     }
+    // ADT-Tweak-End
 }
