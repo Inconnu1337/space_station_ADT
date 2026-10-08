@@ -1,0 +1,59 @@
+- type: jukebox
+  id: ADTKevinMacLeodExhilarate
+  name: "Kevin MacLeod - Exhilarate"
+  path:
+    path: /Audio/ADT/Jukebox/rock/kevin_macleod_exhilarate.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodMetalmania
+  name: "Kevin MacLeod - Metalmania"
+  path:
+    path: /Audio/ADT/Jukebox/rock/kevin_macleod_metalmania.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodMotherlode
+  name: "Kevin MacLeod - Motherlode"
+  path:
+    path: /Audio/ADT/Jukebox/rock/kevin_macleod_motherlode.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodReadyAimFire
+  name: "Kevin MacLeod - Ready Aim Fire"
+  path:
+    path: /Audio/ADT/Jukebox/rock/kevin_macleod_ready_aim_fire.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodTwisted
+  name: "Kevin MacLeod - Twisted"
+  path:
+    path: /Audio/ADT/Jukebox/rock/kevin_macleod_twisted.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicMegaMetal
+  name: "Loyalty Freak Music - Mega Metal"
+  path:
+    path: /Audio/ADT/Jukebox/rock/loyalty_freak_music_mega_metal.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicUltraMetal
+  name: "Loyalty Freak Music - Ultra Metal"
+  path:
+    path: /Audio/ADT/Jukebox/rock/loyalty_freak_music_ultra_metal.ogg
+
+- type: jukebox
+  id: ADTManBitesDogMilkAndHoney
+  name: "Man Bites Dog - Milk and Honey"
+  path:
+    path: /Audio/ADT/Jukebox/rock/man_bites_dog_milk_and_honey.ogg
+
+- type: jukebox
+  id: ADTManBitesDogOneChordWonder
+  name: "Man Bites Dog - One Chord Wonder"
+  path:
+    path: /Audio/ADT/Jukebox/rock/man_bites_dog_one_chord_wonder.ogg
+
+- type: jukebox
+  id: ADTManBitesDogWhispersInMyMind
+  name: "Man Bites Dog - Whispers In My Mind"
+  path:
+    path: /Audio/ADT/Jukebox/rock/man_bites_dog_whispers_in_my_mind.ogg

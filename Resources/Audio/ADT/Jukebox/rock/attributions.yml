@@ -1,0 +1,49 @@
+- files: ["kevin_macleod_exhilarate.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Exhilarate by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300028"
+
+- files: ["kevin_macleod_metalmania.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Metalmania by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700023"
+
+- files: ["kevin_macleod_motherlode.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Motherlode by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500033"
+
+- files: ["kevin_macleod_ready_aim_fire.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Ready Aim Fire by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500002"
+
+- files: ["kevin_macleod_twisted.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Twisted by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400046"
+
+- files: ["loyalty_freak_music_mega_metal.ogg"]
+  license: "CC0-1.0"
+  copyright: "Mega Metal by Loyalty Freak Music. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/Loyalty_Freak_Music/HYPER_METAL_/Loyalty_Freak_Music_-_HYPER_METAL__-_03_MEGA_METAL/"
+
+- files: ["loyalty_freak_music_ultra_metal.ogg"]
+  license: "CC0-1.0"
+  copyright: "Ultra Metal by Loyalty Freak Music. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/Loyalty_Freak_Music/HYPER_METAL_/Loyalty_Freak_Music_-_HYPER_METAL__-_04_ULTRA_METAL/"
+
+- files: ["man_bites_dog_milk_and_honey.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Milk and Honey by Man Bites Dog. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/manbitesdog/Safe_and_Sound_EP/Man_Bites_Dog_-_Safe_and_Sound_EP_-_03_-_Milk_and_Honey/"
+
+- files: ["man_bites_dog_one_chord_wonder.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "One Chord Wonder by Man Bites Dog. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/manbitesdog/Safe_and_Sound_EP/Man_Bites_Dog_-_Safe_and_Sound_EP_-_01_-_One_Chord_Wonder/"
+
+- files: ["man_bites_dog_whispers_in_my_mind.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Whispers In My Mind by Man Bites Dog. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/manbitesdog/Whispers_in_my_mind/Man_Bites_Dog_-_Whispers_In_My_Mind/"

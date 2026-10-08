@@ -1,0 +1,47 @@
+- type: jukebox
+  id: ADTKevinMacLeodDiscoConTutti
+  name: "Kevin MacLeod - Disco con Tutti"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_disco_con_tutti.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodEnterTheParty
+  name: "Kevin MacLeod - Enter the Party"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_enter_the_party.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodFunkorama
+  name: "Kevin MacLeod - Funkorama"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_funkorama.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodFunkyChunk
+  name: "Kevin MacLeod - Funky Chunk"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_funky_chunk.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodGotFunk
+  name: "Kevin MacLeod - Got Funk"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_got_funk.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodJustNasty
+  name: "Kevin MacLeod - Just Nasty"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_just_nasty.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodStyleFunk
+  name: "Kevin MacLeod - Style Funk"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_style_funk.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodYourCall
+  name: "Kevin MacLeod - Your Call"
+  path:
+    path: /Audio/ADT/Jukebox/funk/kevin_macleod_your_call.ogg

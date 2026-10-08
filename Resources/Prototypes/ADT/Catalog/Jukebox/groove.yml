@@ -1,0 +1,59 @@
+- type: jukebox
+  id: ADTHoliznaCC0CalmCurrents
+  name: "HoliznaCC0 - Calm Currents"
+  path:
+    path: /Audio/ADT/Jukebox/groove/holiznacc0_calm_currents.ogg
+
+- type: jukebox
+  id: ADTHoliznaCC0OneNightInFrance
+  name: "HoliznaCC0 - One Night In France"
+  path:
+    path: /Audio/ADT/Jukebox/groove/holiznacc0_one_night_in_france.ogg
+
+- type: jukebox
+  id: ADTHoliznaCC0TokyoSunset
+  name: "HoliznaCC0 - Tokyo Sunset"
+  path:
+    path: /Audio/ADT/Jukebox/groove/holiznacc0_tokyo_sunset.ogg
+
+- type: jukebox
+  id: ADTHoliznaCC0WarmFuzz
+  name: "HoliznaCC0 - Warm Fuzz"
+  path:
+    path: /Audio/ADT/Jukebox/groove/holiznacc0_warm_fuzz.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodDubFeral
+  name: "Kevin MacLeod - Dub Feral"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_dub_feral.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodLobbyTime
+  name: "Kevin MacLeod - Lobby Time"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_lobby_time.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodLocalForecast
+  name: "Kevin MacLeod - Local Forecast"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_local_forecast.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodNightInVenice
+  name: "Kevin MacLeod - Night in Venice"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_night_in_venice.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodSundayDub
+  name: "Kevin MacLeod - Sunday Dub"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_sunday_dub.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodThiefInTheNight
+  name: "Kevin MacLeod - Thief in the Night"
+  path:
+    path: /Audio/ADT/Jukebox/groove/kevin_macleod_thief_in_the_night.ogg

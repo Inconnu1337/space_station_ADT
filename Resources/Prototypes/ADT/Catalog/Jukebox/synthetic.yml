@@ -1,0 +1,53 @@
+- type: jukebox
+  id: ADTKevinMacLeodBrainDance
+  name: "Kevin MacLeod - Brain Dance"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_brain_dance.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodCloudDancer
+  name: "Kevin MacLeod - Cloud Dancer"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_cloud_dancer.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodCyborgNinja
+  name: "Kevin MacLeod - Cyborg Ninja"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_cyborg_ninja.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodDigitalLemonade
+  name: "Kevin MacLeod - Digital Lemonade"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_digital_lemonade.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodEquatorialComplex
+  name: "Kevin MacLeod - Equatorial Complex"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_equatorial_complex.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodOuroboros
+  name: "Kevin MacLeod - Ouroboros"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_ouroboros.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodVoxelRevolution
+  name: "Kevin MacLeod - Voxel Revolution"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/kevin_macleod_voxel_revolution.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicAfterParty
+  name: "Loyalty Freak Music - After Party"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/loyalty_freak_music_after_party.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicHighTechnologicBeatExplosion
+  name: "Loyalty Freak Music - High Technologic Beat Explosion"
+  path:
+    path: /Audio/ADT/Jukebox/synthetic/loyalty_freak_music_high_technologic_beat_explosion.ogg
