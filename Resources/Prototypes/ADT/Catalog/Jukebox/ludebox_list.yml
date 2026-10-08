@@ -22,3 +22,163 @@
   - ATenseAdventure
   - HappyEnding
   - lateraligator
+
+- type: jukeboxList
+  id: Rock
+  jukeboxes:
+  - ADTKevinMacLeodExhilarate
+  - ADTKevinMacLeodMetalmania
+  - ADTKevinMacLeodMotherlode
+  - ADTKevinMacLeodReadyAimFire
+  - ADTKevinMacLeodTwisted
+  - ADTLoyaltyFreakMusicMegaMetal
+  - ADTLoyaltyFreakMusicUltraMetal
+  - ADTManBitesDogMilkAndHoney
+  - ADTManBitesDogOneChordWonder
+  - ADTManBitesDogWhispersInMyMind
+
+- type: jukeboxList
+  id: Mix
+  jukeboxes:
+  - ADTManBitesDogWhispersInMyMind
+  - ADTKevinMacLeodMetalmania
+  - ADTKevinMacLeodFunkyChunk
+  - ADTHoliznaCC0TokyoSunset
+  - ADTKevinMacLeodCyborgNinja
+  - ADTLeeRosevereHowIUsedToSeeTheStars
+  - ADTBrokeForFreeNightOwl
+  - ADTTheEastonEllisesGlitches
+  - ADTKevinMacLeodSmoothLovin
+  - ADTJan125DragonTailTavern
+  - ADTKevinMacLeodIndustrialRevolution
+  - ADTKevinMacLeodHeartOfNowhere
+  - ADTToursEnthusiast
+
+- type: jukeboxList
+  id: MMachine
+  jukeboxes:
+  - ADTKevinMacLeodOdyssey
+  - ADTKevinMacLeodPhantomFromSpace
+  - ADTKevinMacLeodSpellbound
+  - ADTKevinMacLeodUniversal
+  - ADTLeeRosevereGone
+  - ADTLeeRosevereHowIUsedToSeeTheStars
+  - ADTLeeRosevereSlowLights
+  - ADTLeeRosevereUniverseCalling
+
+- type: jukeboxList
+  id: ADTCosmic
+  jukeboxes:
+  - ADTBrokeForFreeAsColorfulAsEver
+  - ADTBrokeForFreeDayBird
+  - ADTBrokeForFreeMyAlwaysMood
+  - ADTBrokeForFreeNightOwl
+  - ADTBrokeForFreeOnlyKnows
+  - ADTBrokeForFreeSomethingElated
+  - ADTLeeRosevereFeatherlight
+  - ADTLeeRosevereWavesOfSleep
+  - ADTToursEnthusiast
+
+- type: jukeboxList
+  id: ADTDigger
+  jukeboxes:
+  - ADTJan125DragonTailTavern
+  - ADTKevinMacLeodBurnTheWorldWaltz
+  - ADTKevinMacLeodCrusade
+  - ADTKevinMacLeodFeralAngelWaltz
+  - ADTKevinMacLeodMidnightTale
+  - ADTKevinMacLeodTheBritons
+  - ADTKevinMacLeodWaltzPrimordial
+  - ADTLoyaltyFreakMusicGigaMetal
+  - ADTLoyaltyFreakMusicSuperMetal
+  - ADTRandomMindMedievalKingSFeast
+
+- type: jukeboxList
+  id: ADTUtil
+  jukeboxes:
+  - ADTHorrorPenAtWork
+  - ADTKevinMacLeodCephalopod
+  - ADTKevinMacLeodClubDiver
+  - ADTKevinMacLeodExitThePremises
+  - ADTKevinMacLeodIndustrialCinematic
+  - ADTKevinMacLeodIndustrialRevolution
+  - ADTKevinMacLeodInspired
+  - ADTKevinMacLeodLatinIndustries
+  - ADTKevinMacLeodMiningByMoonlight
+
+- type: jukeboxList
+  id: ADTFunc
+  jukeboxes:
+  - ADTKevinMacLeodDiscoConTutti
+  - ADTKevinMacLeodEnterTheParty
+  - ADTKevinMacLeodFunkorama
+  - ADTKevinMacLeodFunkyChunk
+  - ADTKevinMacLeodGotFunk
+  - ADTKevinMacLeodJustNasty
+  - ADTKevinMacLeodStyleFunk
+  - ADTKevinMacLeodYourCall
+
+- type: jukeboxList
+  id: ADTGroove
+  jukeboxes:
+  - ADTHoliznaCC0CalmCurrents
+  - ADTHoliznaCC0OneNightInFrance
+  - ADTHoliznaCC0TokyoSunset
+  - ADTHoliznaCC0WarmFuzz
+  - ADTKevinMacLeodDubFeral
+  - ADTKevinMacLeodLobbyTime
+  - ADTKevinMacLeodLocalForecast
+  - ADTKevinMacLeodNightInVenice
+  - ADTKevinMacLeodSundayDub
+  - ADTKevinMacLeodThiefInTheNight
+
+- type: jukeboxList
+  id: ADTNostalgia
+  jukeboxes:
+  - ADTKevinMacLeodLaserGroove
+  - ADTKevinMacLeodNewerWave
+  - ADTKevinMacLeodNowhereLand
+  - ADTKevinMacLeodVoltaic
+  - ADTTheEastonEllisesEndorphin
+  - ADTTheEastonEllisesErsatz
+  - ADTTheEastonEllisesGlitches
+  - ADTTheEastonEllisesInsomnia
+  - ADTTheEastonEllisesLiquorstore
+
+- type: jukeboxList
+  id: ADTPriest
+  jukeboxes:
+  - ADTKevinMacLeodAscendingTheVale
+  - ADTKevinMacLeodCanonInDMajor
+  - ADTKevinMacLeodEternalHope
+  - ADTKevinMacLeodFrozenStar
+  - ADTKevinMacLeodHeartOfNowhere
+  - ADTKevinMacLeodMeditationImpromptu01
+  - ADTKevinMacLeodNightVigil
+  - ADTKevinMacLeodPreludeInCBWV846
+
+- type: jukeboxList
+  id: ADTRomantic
+  jukeboxes:
+  - ADTJasonShawAcousticMeditation
+  - ADTKevinMacLeodAlmostBliss
+  - ADTKevinMacLeodLoveSong
+  - ADTKevinMacLeodReawakening
+  - ADTKevinMacLeodSmoothLovin
+  - ADTKevinMacLeodThereIsRomance
+  - ADTLoboLocoAfterMidnightWalk
+  - ADTLoboLocoArticBeauty
+
+
+- type: jukeboxList
+  id: ADTSintetic
+  jukeboxes:
+  - ADTKevinMacLeodBrainDance
+  - ADTKevinMacLeodCloudDancer
+  - ADTKevinMacLeodCyborgNinja
+  - ADTKevinMacLeodDigitalLemonade
+  - ADTKevinMacLeodEquatorialComplex
+  - ADTKevinMacLeodOuroboros
+  - ADTKevinMacLeodVoxelRevolution
+  - ADTLoyaltyFreakMusicAfterParty
+  - ADTLoyaltyFreakMusicHighTechnologicBeatExplosion

@@ -22,6 +22,13 @@
     SaxophoneInstrument: 1
     ClarinetInstrument: 1
     FluteInstrument: 1
+    ADTMusicDiskMMachine: 1
+    ADTMusicDiskCosmic: 1
+    ADTMusicDiskFunc: 1
+    ADTMusicDiskGroove: 1
+    AADTMusicDiskNostalgia: 1
+    ADTMusicDiskRomantic: 1
+    ADTMusicDiskSintetic: 1
   contrabandInventory:
     ToyFigurineMusician: 1
     ADTPlushieEtvy: 1
