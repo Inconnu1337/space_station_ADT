@@ -1,0 +1,59 @@
+- type: jukebox
+  id: ADTJan125DragonTailTavern
+  name: "Jan125 - Dragon Tail Tavern"
+  path:
+    path: /Audio/ADT/Jukebox/digger/jan125_dragon_tail_tavern.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodBurnTheWorldWaltz
+  name: "Kevin MacLeod - Burn The World Waltz"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_burn_the_world_waltz.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodCrusade
+  name: "Kevin MacLeod - Crusade"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_crusade.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodFeralAngelWaltz
+  name: "Kevin MacLeod - Feral Angel Waltz"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_feral_angel_waltz.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodMidnightTale
+  name: "Kevin MacLeod - Midnight Tale"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_midnight_tale.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodTheBritons
+  name: "Kevin MacLeod - The Britons"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_the_britons.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodWaltzPrimordial
+  name: "Kevin MacLeod - Waltz Primordial"
+  path:
+    path: /Audio/ADT/Jukebox/digger/kevin_macleod_waltz_primordial.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicGigaMetal
+  name: "Loyalty Freak Music - Giga Metal"
+  path:
+    path: /Audio/ADT/Jukebox/digger/loyalty_freak_music_giga_metal.ogg
+
+- type: jukebox
+  id: ADTLoyaltyFreakMusicSuperMetal
+  name: "Loyalty Freak Music - Super Metal"
+  path:
+    path: /Audio/ADT/Jukebox/digger/loyalty_freak_music_super_metal.ogg
+
+- type: jukebox
+  id: ADTRandomMindMedievalKingSFeast
+  name: "RandomMind - Medieval: King's Feast"
+  path:
+    path: /Audio/ADT/Jukebox/digger/randommind_kings_feast.ogg

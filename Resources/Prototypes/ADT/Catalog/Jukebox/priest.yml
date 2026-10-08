@@ -1,0 +1,47 @@
+- type: jukebox
+  id: ADTKevinMacLeodAscendingTheVale
+  name: "Kevin MacLeod - Ascending the Vale"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_ascending_the_vale.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodCanonInDMajor
+  name: "Kevin MacLeod - Canon in D Major"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_canon_in_d_major.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodEternalHope
+  name: "Kevin MacLeod - Eternal Hope"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_eternal_hope.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodFrozenStar
+  name: "Kevin MacLeod - Frozen Star"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_frozen_star.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodHeartOfNowhere
+  name: "Kevin MacLeod - Heart of Nowhere"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_heart_of_nowhere.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodMeditationImpromptu01
+  name: "Kevin MacLeod - Meditation Impromptu 01"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_meditation_impromptu_01.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodNightVigil
+  name: "Kevin MacLeod - Night Vigil"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_night_vigil.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodPreludeInCBWV846
+  name: "Kevin MacLeod - Prelude in C (BWV 846)"
+  path:
+    path: /Audio/ADT/Jukebox/priest/kevin_macleod_prelude_in_c_bwv_846.ogg
