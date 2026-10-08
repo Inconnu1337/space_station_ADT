@@ -1,0 +1,44 @@
+- files: ["kevin_macleod_laser_groove.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Laser Groove by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700017"
+
+- files: ["kevin_macleod_newer_wave.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Newer Wave by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN2000024"
+
+- files: ["kevin_macleod_nowhere_land.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Nowhere Land by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600051"
+
+- files: ["kevin_macleod_voltaic.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Voltaic by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600056"
+
+- files: ["the_easton_ellises_endorphin.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Endorphin by The Easton Ellises. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/The_Easton_Ellises/EP_One/05_the_easton_ellises_-_endorphin/"
+
+- files: ["the_easton_ellises_ersatz.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Ersatz by The Easton Ellises. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/The_Easton_Ellises/EP_Two/03_the_easton_ellises_-_ersatz/"
+
+- files: ["the_easton_ellises_glitches.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Glitches by The Easton Ellises. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/The_Easton_Ellises/EP_One/04_the_easton_ellises_-_glitches/"
+
+- files: ["the_easton_ellises_insomnia.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Insomnia by The Easton Ellises. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/The_Easton_Ellises/EP_Two/02_the_easton_ellises_-_insomnia/"
+
+- files: ["the_easton_ellises_liquorstore.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Liquorstore by The Easton Ellises. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/The_Easton_Ellises/EP_One/01_the_easton_ellises_-_liquorstore_1840/"

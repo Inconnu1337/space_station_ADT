@@ -1,0 +1,39 @@
+- files: ["kevin_macleod_odyssey.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Odyssey by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500012"
+
+- files: ["kevin_macleod_phantom_from_space.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Phantom from Space by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500038"
+
+- files: ["kevin_macleod_spellbound.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Spellbound by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500061"
+
+- files: ["kevin_macleod_universal.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Universal by Kevin MacLeod. Converted to mono ogg"
+  source: "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500035"
+
+- files: ["lee_rosevere_gone.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Gone by Lee Rosevere. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-ambient/gone-1/"
+
+- files: ["lee_rosevere_how_i_used_to_see_the_stars.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "How I Used To See The Stars by Lee Rosevere. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-ambient/how-i-used-to-see-the-stars/"
+
+- files: ["lee_rosevere_slow_lights.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Slow Lights by Lee Rosevere. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-ambient/slow-lights/"
+
+- files: ["lee_rosevere_universe_calling.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Universe Calling by Lee Rosevere. Converted to mono ogg"
+  source: "https://freemusicarchive.org/music/lee-rosevere/music-for-podcasts-ambient/universe-calling/"

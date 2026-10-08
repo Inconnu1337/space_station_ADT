@@ -1,0 +1,47 @@
+- type: jukebox
+  id: ADTJasonShawAcousticMeditation
+  name: "Jason Shaw - Acoustic Meditation"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/jason_shaw_acoustic_meditation.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodAlmostBliss
+  name: "Kevin MacLeod - Almost Bliss"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/kevin_macleod_almost_bliss.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodLoveSong
+  name: "Kevin MacLeod - Love Song"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/kevin_macleod_love_song.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodReawakening
+  name: "Kevin MacLeod - Reawakening"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/kevin_macleod_reawakening.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodSmoothLovin
+  name: "Kevin MacLeod - Smooth Lovin"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/kevin_macleod_smooth_lovin.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodThereIsRomance
+  name: "Kevin MacLeod - There is Romance"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/kevin_macleod_there_is_romance.ogg
+
+- type: jukebox
+  id: ADTLoboLocoAfterMidnightWalk
+  name: "Lobo Loco - After Midnight Walk"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/lobo_loco_after_midnight_walk.ogg
+
+- type: jukebox
+  id: ADTLoboLocoArticBeauty
+  name: "Lobo Loco - Artic Beauty"
+  path:
+    path: /Audio/ADT/Jukebox/romantic/lobo_loco_artic_beauty.ogg

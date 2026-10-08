@@ -1,0 +1,47 @@
+- type: jukebox
+  id: ADTKevinMacLeodOdyssey
+  name: "Kevin MacLeod - Odyssey"
+  path:
+    path: /Audio/ADT/Jukebox/space/kevin_macleod_odyssey.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodPhantomFromSpace
+  name: "Kevin MacLeod - Phantom from Space"
+  path:
+    path: /Audio/ADT/Jukebox/space/kevin_macleod_phantom_from_space.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodSpellbound
+  name: "Kevin MacLeod - Spellbound"
+  path:
+    path: /Audio/ADT/Jukebox/space/kevin_macleod_spellbound.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodUniversal
+  name: "Kevin MacLeod - Universal"
+  path:
+    path: /Audio/ADT/Jukebox/space/kevin_macleod_universal.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereGone
+  name: "Lee Rosevere - Gone"
+  path:
+    path: /Audio/ADT/Jukebox/space/lee_rosevere_gone.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereHowIUsedToSeeTheStars
+  name: "Lee Rosevere - How I Used To See The Stars"
+  path:
+    path: /Audio/ADT/Jukebox/space/lee_rosevere_how_i_used_to_see_the_stars.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereSlowLights
+  name: "Lee Rosevere - Slow Lights"
+  path:
+    path: /Audio/ADT/Jukebox/space/lee_rosevere_slow_lights.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereUniverseCalling
+  name: "Lee Rosevere - Universe Calling"
+  path:
+    path: /Audio/ADT/Jukebox/space/lee_rosevere_universe_calling.ogg

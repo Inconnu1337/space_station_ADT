@@ -1,0 +1,53 @@
+- type: jukebox
+  id: ADTKevinMacLeodLaserGroove
+  name: "Kevin MacLeod - Laser Groove"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/kevin_macleod_laser_groove.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodNewerWave
+  name: "Kevin MacLeod - Newer Wave"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/kevin_macleod_newer_wave.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodNowhereLand
+  name: "Kevin MacLeod - Nowhere Land"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/kevin_macleod_nowhere_land.ogg
+
+- type: jukebox
+  id: ADTKevinMacLeodVoltaic
+  name: "Kevin MacLeod - Voltaic"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/kevin_macleod_voltaic.ogg
+
+- type: jukebox
+  id: ADTTheEastonEllisesEndorphin
+  name: "The Easton Ellises - Endorphin"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/the_easton_ellises_endorphin.ogg
+
+- type: jukebox
+  id: ADTTheEastonEllisesErsatz
+  name: "The Easton Ellises - Ersatz"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/the_easton_ellises_ersatz.ogg
+
+- type: jukebox
+  id: ADTTheEastonEllisesGlitches
+  name: "The Easton Ellises - Glitches"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/the_easton_ellises_glitches.ogg
+
+- type: jukebox
+  id: ADTTheEastonEllisesInsomnia
+  name: "The Easton Ellises - Insomnia"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/the_easton_ellises_insomnia.ogg
+
+- type: jukebox
+  id: ADTTheEastonEllisesLiquorstore
+  name: "The Easton Ellises - Liquorstore"
+  path:
+    path: /Audio/ADT/Jukebox/nostalgia/the_easton_ellises_liquorstore.ogg

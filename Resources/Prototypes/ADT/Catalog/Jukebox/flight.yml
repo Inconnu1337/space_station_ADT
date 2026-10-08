@@ -1,0 +1,53 @@
+- type: jukebox
+  id: ADTBrokeForFreeAsColorfulAsEver
+  name: "Broke For Free - As Colorful As Ever"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_as_colorful_as_ever.ogg
+
+- type: jukebox
+  id: ADTBrokeForFreeDayBird
+  name: "Broke For Free - Day Bird"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_day_bird.ogg
+
+- type: jukebox
+  id: ADTBrokeForFreeMyAlwaysMood
+  name: "Broke For Free - My Always Mood"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_my_always_mood.ogg
+
+- type: jukebox
+  id: ADTBrokeForFreeNightOwl
+  name: "Broke For Free - Night Owl"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_night_owl.ogg
+
+- type: jukebox
+  id: ADTBrokeForFreeOnlyKnows
+  name: "Broke For Free - Only Knows"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_only_knows.ogg
+
+- type: jukebox
+  id: ADTBrokeForFreeSomethingElated
+  name: "Broke For Free - Something Elated"
+  path:
+    path: /Audio/ADT/Jukebox/flight/broke_for_free_something_elated.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereFeatherlight
+  name: "Lee Rosevere - Featherlight"
+  path:
+    path: /Audio/ADT/Jukebox/flight/lee_rosevere_featherlight.ogg
+
+- type: jukebox
+  id: ADTLeeRosevereWavesOfSleep
+  name: "Lee Rosevere - Waves of Sleep"
+  path:
+    path: /Audio/ADT/Jukebox/flight/lee_rosevere_waves_of_sleep.ogg
+
+- type: jukebox
+  id: ADTToursEnthusiast
+  name: "Tours - Enthusiast"
+  path:
+    path: /Audio/ADT/Jukebox/flight/tours_enthusiast.ogg
