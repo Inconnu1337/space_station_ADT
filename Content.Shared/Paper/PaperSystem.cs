@@ -305,6 +305,11 @@ public sealed class PaperSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
+        // ADT-Tweak-Start
+        if (uid.Comp.EditingDisabled)
+            return;
+        // ADT-Tweak-End
+
         // Pens have a `Write` tag.
         if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, "Write"))
             return;
